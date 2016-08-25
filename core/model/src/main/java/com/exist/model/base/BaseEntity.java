@@ -9,9 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 @MappedSuperclass
-public abstract class BaseEntity implements Persistable<Long> {
+public abstract class BaseEntity implements Persistable<Long>, Serializable {
+
+    private static final long serialVersionUID = 8961456115964444813L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

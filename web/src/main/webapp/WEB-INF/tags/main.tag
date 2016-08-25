@@ -12,9 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= title %>
     </title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/css/custom.css"/>
+    <link rel="stylesheet" href="/webapp/resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/webapp/resources/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/webapp/resources/css/custom.css"/>
 </head>
 
 <body>
@@ -34,6 +34,6 @@
         <jsp:doBody/>
     </div>
 
-    <script src="/js/jquery-3.1.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="/webapp/resources/js/jquery-3.1.0.min.js"></script>
+    <script src="/webapp/resources/js/bootstrap.min.js"></script>
 </body>
