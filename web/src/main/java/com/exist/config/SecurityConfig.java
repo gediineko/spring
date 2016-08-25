@@ -16,7 +16,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final static String[] PERMIT_ALL = {
-            "/"
+            "/",
+            "/css/**",
+            "/js/**",
+            "/fonts/**",
+            "/images/**"
     };
 
     @Autowired
@@ -39,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PERMIT_ALL).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
+                .formLogin().loginPage("/").permitAll()
                 .and()
                 .logout().permitAll()
                 .permitAll();

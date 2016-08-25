@@ -21,10 +21,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                     "/images/**",
                     "/js/**", 
                     "/fonts/**")
-                .addResourceLocations("/webapp/resources/css/",
-                    "/webapp/resources/images/",
-                    "/webapp/resources/js/", 
-                    "/webapp/resources/fonts/");
+                .addResourceLocations("/resources/css/",
+                    "/resources/images/",
+                    "/resources/js/",
+                    "/resources/fonts/");
     }
 
     @Bean
@@ -35,4 +35,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
         return viewResolver;
     }
+
+
 }

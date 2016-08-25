@@ -3,13 +3,21 @@
 
 <t:main title="Log-In/Sign-up">
 
-    <form class="form">
+    <form class="form" method="post">
         <div class="col-md-6">
-            <label for="username">UserName</label>
-            <input class="form-control" id="username" placeholder="Username"/>
-            <label for="password">Password</label>
-            <input class="form-control" id="password" placeholder="Password"/>
-            <button type="submit">Submit</button>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <div class="">
+                <label for="username">UserName</label>
+                <input class="form-control" id="username" name="username" placeholder="Username"/>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input class="form-control" id="password" name="password" placeholder="Password"/>
+            </div>
+            <br>
+            <div>
+                <button class="btn btn-primary pull-right" type="submit">Submit</button>
+            </div>
         </div>
     </form>
 
