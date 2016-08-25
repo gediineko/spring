@@ -4,7 +4,8 @@
 <t:main title="Log-In/Sign-up">
 
     <form class="form" method="post">
-        <div class="col-md-6">
+        <div class="col-md-6 col-md-offset-3">
+            <h1 class="text-center">Log In</h1>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <div class="">
                 <label for="username">UserName</label>
