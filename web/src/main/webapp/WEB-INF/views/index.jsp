@@ -6,11 +6,13 @@
     <form class="form" method="post">
         <div class="col-md-6 col-md-offset-3">
             <h1 class="text-center">Log In</h1>
+            <br>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <div class="">
                 <label for="username">UserName</label>
                 <input class="form-control" id="username" name="username" placeholder="Username"/>
             </div>
+            <br>
             <div>
                 <label for="password">Password</label>
                 <input class="form-control" id="password" name="password" placeholder="Password"/>
