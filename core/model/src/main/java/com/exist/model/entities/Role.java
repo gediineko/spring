@@ -23,6 +23,7 @@ public class Role extends BaseEntity {
     private String name;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
     public String getName() {
