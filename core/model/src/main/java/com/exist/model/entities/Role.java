@@ -17,7 +17,7 @@ public class Role extends BaseEntity {
     @JoinTable(name = "PERSON_ROLE",
             joinColumns = @JoinColumn(name = "ROLE_ID"),
             inverseJoinColumns = @JoinColumn(name = "PERSON_ID"))
-    private List<Person> person;
+    private List<UserProfile> userProfile;
 
     @Column
     private String name;
@@ -41,12 +41,12 @@ public class Role extends BaseEntity {
         this.roleType = roleType;
     }
 
-    public List<Person> getPerson() {
-        return person;
+    public List<UserProfile> getUserProfile() {
+        return userProfile;
     }
 
-    public void setPerson(List<Person> person) {
-        this.person = person;
+    public void setUserProfile(List<UserProfile> userProfile) {
+        this.userProfile = userProfile;
     }
 
     @Override

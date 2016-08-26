@@ -1,16 +1,17 @@
 package com.exist.model.entities;
 
-import com.exist.model.base.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ggolong on 8/25/16.
  */
 @Entity
-public class Person extends BaseEntity {
+public class UserProfile extends UserAccount {
     private static final long serialVersionUID = -3138466364444175632L;
 
     @Embedded
@@ -34,11 +35,6 @@ public class Person extends BaseEntity {
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Contact> contactInfo = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "PERSON_ROLE",
-            joinColumns = @JoinColumn(name = "PERSON_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-    private Set<Role> roles = new HashSet<>();
 
     public Name getName() {
         return name;
@@ -96,13 +92,6 @@ public class Person extends BaseEntity {
         this.contactInfo = contactInfo;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 
     @Override
     public String toString() {
@@ -115,5 +104,5 @@ public class Person extends BaseEntity {
                 .append("currentlyEmployed", currentlyEmployed)
                 .toString();
     }
-    
+
 }

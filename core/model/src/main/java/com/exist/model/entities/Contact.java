@@ -14,7 +14,7 @@ public class Contact extends BaseEntity {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "PERSON_ID")
-    private Person person;
+    private UserProfile userProfile;
 
     @Column
     private String contactInfo;
@@ -22,12 +22,12 @@ public class Contact extends BaseEntity {
     @Column
     private String contactType;
 
-    public Person getPerson() {
-        return person;
+    public UserProfile getUserProfile() {
+        return userProfile;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 
     public String getContactInfo() {

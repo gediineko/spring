@@ -25,6 +25,10 @@ public abstract class BaseEntity implements Persistable<Long>, Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean isNew() {
         return id == null;
