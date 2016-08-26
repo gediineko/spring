@@ -25,21 +25,14 @@ public class DozerConfig {
         mapper().addMapping(new BeanMappingBuilder() {
             @Override
             protected void configure() {
-                // Most Basic Mapping, two way mapping configuration to
-                // AddressDto <-> Address
                 mapping(AddressDto.class, Address.class);
 
-                // One Way Mapping, pra hindi nya isama ung ID nung DTO dun sa entity
-                // Pwede kase mag inject ng ibang ID si user kpag inedit ung
-                //  Web source code. So this is only for ContactDto -> Contact
                 mapping(
                         ContactDto.class,
                         Contact.class,
                         TypeMappingOptions.oneWay()
                 ).exclude("id");
 
-                // Need lang mag register pabalik, ung Entity ID to DTO ID, okay lang since
-                // galing nman sa database un and usually this is just for viewing
                 mapping(Contact.class, ContactDto.class, TypeMappingOptions.oneWay());
 
                 mapping(NameDto.class, Name.class);
