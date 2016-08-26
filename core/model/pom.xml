@@ -24,10 +24,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>net.karneim</groupId>
-            <artifactId>pojobuilder</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

@@ -24,8 +24,7 @@
         <spring-data-commons.version>1.12.2.RELEASE</spring-data-commons.version>
 
         <commons-lang3.version>3.4</commons-lang3.version>
-        <modelmapper.version>0.7.6</modelmapper.version>
-        <pojobuilder.version>3.4.1</pojobuilder.version>
+        <dozer.version>5.5.1</dozer.version>
 
         <hibernate.version>4.3.11.Final</hibernate.version>
         <persistence.version>1.0.0.Final</persistence.version>
@@ -102,6 +101,7 @@
                 <artifactId>spring-security-core</artifactId>
                 <version>${spring-security.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
@@ -155,17 +155,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.modelmapper</groupId>
-                <artifactId>modelmapper</artifactId>
-                <version>${modelmapper.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>net.karneim</groupId>
-                <artifactId>pojobuilder</artifactId>
-                <version>${pojobuilder.version}</version>
-                <!-- 'provided' scope because this is only needed during compilation -->
-                <scope>provided</scope>
+                <groupId>net.sf.dozer</groupId>
+                <artifactId>dozer</artifactId>
+                <version>${dozer.version}</version>
             </dependency>
 
 
