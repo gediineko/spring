@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
 public class UserAccountServiceImpl implements UserAccountService {
 
     @Autowired
-    private Mapper mapper; // autowir ung dozer mapper na gnwan ng bean
+    private Mapper mapper;
 
     @Autowired
-    private PasswordEncoder passwordEncoder; //autowire ung passwordecoder for apssword
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserAccountRepository userAccountRepository;
