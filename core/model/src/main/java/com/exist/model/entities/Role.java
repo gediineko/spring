@@ -14,10 +14,10 @@ public class Role extends BaseEntity {
     private static final long serialVersionUID = 1068681731270573784L;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "PERSON_ROLE",
+    @JoinTable(name = "JOIN_USER_ACCOUNT_X_ROLE",
             joinColumns = @JoinColumn(name = "ROLE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "PERSON_ID"))
-    private List<UserProfile> userProfile;
+            inverseJoinColumns = @JoinColumn(name = "USER_ACCOUNT_ID"))
+    private List<UserAccount> userAccounts;
 
     @Column
     private String name;
@@ -42,12 +42,12 @@ public class Role extends BaseEntity {
         this.roleType = roleType;
     }
 
-    public List<UserProfile> getUserProfile() {
-        return userProfile;
+    public List<UserAccount> getUserAccounts() {
+        return userAccounts;
     }
 
-    public void setUserProfile(List<UserProfile> userProfile) {
-        this.userProfile = userProfile;
+    public void setUserAccounts(List<UserAccount> userAccounts) {
+        this.userAccounts = userAccounts;
     }
 
     @Override

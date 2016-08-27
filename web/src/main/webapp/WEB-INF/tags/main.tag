@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@tag description="Main Template" pageEncoding="UTF-8" %>
 <%@attribute name="title" required="true" %>
 <!doctype html>
@@ -18,22 +19,59 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">
-                    Home
-                </a>
-            </div>
-
-
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand"
+                    <sec:authorize access="hasRole('ADMIN')">
+                        href="/admin"
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('USER')">
+                        href="/profile"
+                    </sec:authorize>
+                    <sec:authorize access="isAnonymous()">
+                        href="/"
+                    </sec:authorize>
+            >
+                Gedii
+            </a>
         </div>
-    </nav>
+        <sec:authorize access="isAuthenticated()">
+            <ul class="nav navbar-nav">
+                <sec:authorize access="hasRole('ADMIN')">
+                    <li
+                            <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/person') }">
+                                class="active"
+                            </c:if>
+                    >
+                        <a href="/user/dashboard">Person Management</a>
+                    </li>
 
-    <div class="container" id="main-container">
-        <jsp:doBody/>
+                    <li
+                            <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/role')}">
+                                class="active"
+                            </c:if>
+                    >
+                        <a href="/admin/dashboard">Role Management</a>
+                    </li>
+
+                    <li
+                            <c:if test="${fn.startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/logout')}">
+                                class="active pull-right"
+                            </c:if>
+                    >
+                        <a href="/logout">Log out</a>
+                    </li>
+                </sec:authorize>
+            </ul>
+        </sec:authorize>
     </div>
+</nav>
 
-    <script src="/js/jquery-3.1.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+<div class="container" id="main-container">
+    <jsp:doBody/>
+</div>
+
+<script src="/js/jquery-3.1.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>

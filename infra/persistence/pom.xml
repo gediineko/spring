@@ -20,7 +20,7 @@
         <jdbc.password>postgres</jdbc.password>
         <hibernate.dialect>org.hibernate.dialect.PostgreSQL9Dialect</hibernate.dialect>
         <hibernate.show_sql>true</hibernate.show_sql>
-        <hibernate.hbm2ddl>update</hibernate.hbm2ddl>
+        <hibernate.hbm2ddl>create-drop</hibernate.hbm2ddl>
         <hibernate.import_files>/import.sql</hibernate.import_files>
     </properties>
 

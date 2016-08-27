@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:main title="Log-In/Sign-up">
+<t:main title="Log In">
 
     <form class="form" method="post">
         <div class="col-md-6 col-md-offset-3">
@@ -19,7 +19,7 @@
             </div>
             <br>
             <div>
-                <button class="btn btn-primary pull-right" type="submit">Submit</button>
+                <button class="btn btn-primary pull-right" type="submit" method="post">Submit</button>
             </div>
         </div>
     </form>

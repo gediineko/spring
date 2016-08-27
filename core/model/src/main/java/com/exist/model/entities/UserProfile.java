@@ -32,7 +32,7 @@ public class UserProfile extends UserAccount {
     @Column
     private Boolean currentlyEmployed;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "userProfile", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Contact> contactInfo = new ArrayList<>();
 
 

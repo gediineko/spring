@@ -10,12 +10,12 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { ServiceConfig.class, RepositoryConfig.class, SecurityConfig.class };
+        return new Class[] { ServiceConfig.class, RepositoryConfig.class, SecurityConfig.class, DozerConfig.class };
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] { WebConfig.class };
+        return new Class<?>[] { WebConfig.class, SecurityConfig.class };
     }
 
     @Override
@@ -27,4 +27,6 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     protected Filter[] getServletFilters() {
         return new Filter[] { new DelegatingFilterProxy("springSecurityFilterChain") };
     }
+
+
 }

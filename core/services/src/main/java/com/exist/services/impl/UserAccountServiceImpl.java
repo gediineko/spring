@@ -43,7 +43,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     @Transactional(readOnly = true)
     public UserAccountDto get(Long id) {
-        Optional<UserAccount> userAccount = Optional.of(userAccountRepository.findOne(id)); //find one is already implemented by JpaRepository/crud na inextedn ni baserepositroy
+        Optional<UserAccount> userAccount = Optional.of(userAccountRepository.findOne(id));
         if (!userAccount.isPresent()) {
             return null;
         }
@@ -53,7 +53,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     @Transactional(readOnly = true)
     public List<UserAccountDto> getAll() {
-        return userAccountRepository.findByRoleType(RoleType.ADMIN) // custom implementation via @Query
+        return userAccountRepository.findByRoleType(RoleType.ADMIN)
                 .stream()
                 .map(u -> mapper.map(u, UserAccountDto.class))
                 .collect(Collectors.toList());
@@ -61,50 +61,35 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public UserAccountDto create(UserAccountDto userAccountDto) {
-        //let's check if existing na ung username
+
         Optional<UserAccount> existingUser = userAccountRepository.findByUsername(userAccountDto.getUsername());
         if(existingUser.isPresent()){
-            // If existing na ung user iwth that username, throw exception
-            // ccustomize to dapat to a new exception pra mas specific
-            // and this will be handled by controller advice
             throw new IllegalArgumentException("User already exists");
         }
 
         UserAccount newUserAccount = new UserAccount();
-        //Map ung ibang fields
         mapper.map(userAccountDto, newUserAccount);
 
-        //manually map ung critical fields
-        newUserAccount.setId(null); //kpag create ,set this to null pra di magkaproblema kay hibernate na bka isipin existing na
+        newUserAccount.setId(null);
         newUserAccount.setUsername(userAccountDto.getUsername());
         newUserAccount.setPassword(passwordEncoder.encode(userAccountDto.getNewPassword()));
 
-        // ungsave ng jpaRepository retursn ung actual etntity na nasave kya rekta ko na dito
         return mapper.map(userAccountRepository.save(newUserAccount), UserAccountDto.class);
     }
 
     @Override
     public UserAccountDto update(UserAccountDto userAccountDto) {
-        //let's check if exisintg ung ID bka kse hindi
         Optional<UserAccount> existingUserOptl = Optional.of(userAccountRepository.getOne(userAccountDto.getId()));
-        //reverse naman natin ung logic ng if, mag tthrow sya ng exception kpag not exisitng
         if(!existingUserOptl.isPresent()){
-            // If not exisintg with that id, throw exception
-            // ccustomize to dapat to a new exception pra mas specific
-            // and this will be handled by controller advice
             throw new IllegalArgumentException("User does not exists");
         }
-        //Map ung ibang fields
         UserAccount existingUser = existingUserOptl.get();
         mapper.map(userAccountDto, existingUser);
 
-        //manually map ung critical fields
-        //checks if hindi equal ung exisitng password sa new password pra ma save ung password
         if(!existingUser.getPassword().equals(userAccountDto.getNewPassword())){
             existingUser.setPassword(passwordEncoder.encode(userAccountDto.getNewPassword()));
         }
 
-        // ungsave ng jpaRepository retursn ung actual etntity na nasave kya rekta ko na dito
         return mapper.map(userAccountRepository.save(existingUser), UserAccountDto.class);
     }
 }

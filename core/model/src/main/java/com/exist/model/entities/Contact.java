@@ -13,7 +13,7 @@ public class Contact extends BaseEntity {
     private static final long serialVersionUID = -1772785729825786403L;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "PERSON_ID")
+    @JoinColumn(name = "USERPROFILE_ID")
     private UserProfile userProfile;
 
     @Column
