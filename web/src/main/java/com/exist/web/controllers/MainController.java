@@ -14,7 +14,6 @@ public class MainController {
 
     @RequestMapping
     public String get(Model model){
-        model.addAttribute("Test", "Spring");
         return "index";
     }
 
@@ -24,6 +23,6 @@ public class MainController {
         if (RoleUtil.isAdmin(userAccount.getRoles())){
             return "redirect:/admin";
         }
-        return "redirect:/user";
+        return "redirect:/user/profile/" + userAccount.getId();
     }
 }

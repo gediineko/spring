@@ -36,33 +36,32 @@
                 Gedii
             </a>
         </div>
-        <sec:authorize access="isAuthenticated()">
+        <sec:authorize access="hasAuthority('ADMIN')">
             <ul class="nav navbar-nav">
-                <sec:authorize access="hasRole('ADMIN')">
-                    <li
-                            <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/person') }">
-                                class="active"
-                            </c:if>
-                    >
-                        <a href="/user/dashboard">Person Management</a>
-                    </li>
 
-                    <li
-                            <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/role')}">
-                                class="active"
-                            </c:if>
-                    >
-                        <a href="/admin/dashboard">Role Management</a>
-                    </li>
+                <li
+                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/person') }">
+                            class="active"
+                        </c:if>
+                >
+                    <a href="/admin/person">Person Management</a>
+                </li>
 
-                    <li
-                            <c:if test="${fn.startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/logout')}">
-                                class="active pull-right"
-                            </c:if>
-                    >
-                        <a href="/logout">Log out</a>
-                    </li>
-                </sec:authorize>
+                <li
+                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/role')}">
+                            class="active"
+                        </c:if>
+                >
+                    <a href="/admin/role">Role Management</a>
+                </li>
+            </ul>
+
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/logout">Log out</a>
+                </li>
             </ul>
         </sec:authorize>
     </div>

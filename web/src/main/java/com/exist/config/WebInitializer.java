@@ -1,6 +1,7 @@
 package com.exist.config;
 
 import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
@@ -25,7 +26,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Filter[] getServletFilters() {
-        return new Filter[] { new DelegatingFilterProxy("springSecurityFilterChain") };
+        return new Filter[] { new DelegatingFilterProxy("springSecurityFilterChain"), new HiddenHttpMethodFilter()};
     }
 
 

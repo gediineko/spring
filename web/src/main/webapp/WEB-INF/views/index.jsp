@@ -2,7 +2,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:main title="Log In">
-
     <form class="form" method="post">
         <div class="col-md-6 col-md-offset-3">
             <h1 class="text-center">Log In</h1>
@@ -15,7 +14,7 @@
             <br>
             <div>
                 <label for="password">Password</label>
-                <input class="form-control" id="password" name="password" placeholder="Password"/>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
             </div>
             <br>
             <div>
