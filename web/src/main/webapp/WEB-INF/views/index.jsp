@@ -8,7 +8,7 @@
             <br>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <div class="">
-                <label for="username">UserName</label>
+                <label for="username">User Name</label>
                 <input class="form-control" id="username" name="username" placeholder="Username"/>
             </div>
             <br>

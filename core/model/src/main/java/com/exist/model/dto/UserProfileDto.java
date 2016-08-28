@@ -1,5 +1,7 @@
 package com.exist.model.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,11 +11,20 @@ import java.util.List;
  */
 public class UserProfileDto extends UserAccountDto {
     private NameDto name;
+
     private AddressDto address;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
+
     private Double gwa;
+
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateHired;
+
     private Boolean currentlyEmployed;
+
     private List<ContactDto> contactInfo = new ArrayList<>();
 
     public NameDto getName() {

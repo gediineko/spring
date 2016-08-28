@@ -31,6 +31,7 @@ public class UserController {
         UserProfileDto userProfile = userProfileService.get(userId);
         model.addAttribute("userProfile", userProfile);
         model.addAttribute("readonly", true);
+        model.addAttribute("hidden", false);
         return "user/profile";
     }
 

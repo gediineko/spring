@@ -71,6 +71,22 @@
     <jsp:doBody/>
 </div>
 
+<footer class="footer">
+    <div class="container">
+        <ul class="nav navbar-nav pull-right">
+            <li class="dropup">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                    <i class="fa fa-globe"></i> Language <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="${requestScope.get('javax.servlet.forward.request_uri')}?lang=en">English</a></li>
+                    <li><a href="${requestScope.get('javax.servlet.forward.request_uri')}?lang=ph">Filipino</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</footer>
+
 <script src="/js/jquery-3.1.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 </body>
