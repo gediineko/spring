@@ -2,6 +2,7 @@ package com.exist.web.controllers;
 
 import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
+import com.exist.model.exception.EntityDoesNotExistException;
 import com.exist.services.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,14 +19,15 @@ public class UserController {
     private UserProfileService userProfileService;
 
     @RequestMapping
-    @PreAuthorize("hasAuthority('USER')")
-    public String get(){
-        return "user/profile";
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String get(Model model){
+        model.addAttribute("userList", userProfileService.getAll());
+        return "user/list";
     }
 
     @RequestMapping(path = "/profile/{userId}")
     @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userId)")
-    public String profile(@PathVariable Long userId, Model model){
+    public String profile(@PathVariable Long userId, Model model) throws EntityDoesNotExistException {
         UserProfileDto userProfile = userProfileService.get(userId);
         model.addAttribute("userProfile", userProfile);
         model.addAttribute("readonly", true);

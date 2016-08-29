@@ -27,6 +27,8 @@
         <dozer.version>5.5.1</dozer.version>
 
         <hibernate.version>4.3.11.Final</hibernate.version>
+        <validation.version>1.1.0.Final</validation.version>
+        <hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
         <persistence.version>1.0.0.Final</persistence.version>
         <postgresql.version>9.4-1206-jdbc42</postgresql.version>
 
@@ -145,8 +147,6 @@
                 <version>${spring-data-commons.version}</version>
             </dependency>
 
-
-
             <!-- Third Party Utilities -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -178,6 +178,18 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
             </dependency>
 
             <!-- Database -->

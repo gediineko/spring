@@ -2,6 +2,7 @@ package com.exist.services;
 
 import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
+import com.exist.model.exception.EntityDoesNotExistException;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface UserProfileService {
 
     UserProfileDto create(UserProfileDto userProfileDto);
 
-    UserProfileDto get(Long userId);
+    UserProfileDto get(Long userId) throws EntityDoesNotExistException;
 
     void addContact(Long userId, ContactDto contact);
 

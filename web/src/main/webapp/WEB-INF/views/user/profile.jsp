@@ -271,6 +271,6 @@
 
 
     </c:if>
-    <t:contactModal mode="Create" user="${userProfile}" contact="${newContact}"/>
+    <t:contactModal mode="Create" user="${userProfile}"/>
 
 </t:main>

@@ -23,10 +23,10 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand"
-                    <sec:authorize access="hasRole('ADMIN')">
+                    <sec:authorize access="hasAuthority('ADMIN')">
                         href="/admin"
                     </sec:authorize>
-                    <sec:authorize access="hasRole('USER')">
+                    <sec:authorize access="hasAuthority('USER')">
                         href="/profile"
                     </sec:authorize>
                     <sec:authorize access="isAnonymous()">

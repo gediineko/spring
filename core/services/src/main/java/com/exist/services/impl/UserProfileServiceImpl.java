@@ -4,6 +4,7 @@ import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
 import com.exist.model.entities.Contact;
 import com.exist.model.entities.UserProfile;
+import com.exist.model.exception.EntityDoesNotExistException;
 import com.exist.repositories.jpa.ContactRepository;
 import com.exist.repositories.jpa.UserProfileRepository;
 import com.exist.services.UserProfileService;
@@ -48,14 +49,14 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Transactional(readOnly = true)
     @Override
-    public UserProfileDto get(Long userId) {
-        Optional<UserProfile> userProfileOptl = Optional.ofNullable(userProfileRepository.findOne(userId));
-        if(!userProfileOptl.isPresent()){
-            throw new IllegalArgumentException("User does not exist");
-        }
-        UserProfile userProfile = userProfileOptl.get();
+    public UserProfileDto get(Long userId) throws EntityDoesNotExistException {
+        UserProfile userProfile = Optional.ofNullable(userProfileRepository.findOne(userId))
+                .orElseThrow(() -> new EntityDoesNotExistException(
+                        "User with that ID does not exist: " + userId,
+                        "error.user.notExists",
+                        new Object[]{userId}));
         userProfile.setContactInfo(userProfile.getContactInfo());
-        return mapper.map(userProfileOptl.get(), UserProfileDto.class);
+        return mapper.map(userProfile, UserProfileDto.class);
     }
 
     @Override
