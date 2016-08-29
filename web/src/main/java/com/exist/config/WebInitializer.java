@@ -5,7 +5,8 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
-
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -29,5 +30,12 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         return new Filter[] { new DelegatingFilterProxy("springSecurityFilterChain"), new HiddenHttpMethodFilter()};
     }
 
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        registration.setMultipartConfig(multipartConfig());
+    }
 
+    private MultipartConfigElement multipartConfig(){
+        return new MultipartConfigElement(System.getProperty("java.io.tmpdir"));
+    }
 }

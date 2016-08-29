@@ -23,7 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/css/**",
             "/js/**",
             "/fonts/**",
-            "/images/**"
+            "/images/**",
+            "/template/**"
     };
 
     @Autowired
@@ -49,7 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/").successForwardUrl("/login/success").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").permitAll()
-                .permitAll();
+                .and()
+                .csrf().disable();
 
     }
 }

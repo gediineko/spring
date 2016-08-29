@@ -17,7 +17,6 @@
                     <input type="hidden" name="_method" value="${mode.equals('Create') ? 'POST' : 'PUT'}">
                     <input type="hidden" name="userProfileId" value='${user.id}'>
                     <input type="hidden" name="id" value='${contact.id}'>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                     <div class="form-group">
                         <label for="contactType" class="control-label req">Contact Type</label>

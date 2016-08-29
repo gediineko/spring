@@ -1,5 +1,7 @@
 package com.exist.model.dto;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * Created by ggolong on 8/26/16.
  */
@@ -39,5 +41,15 @@ public class AddressDto {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("streetNumber", streetNumber)
+                .append("barangay", barangay)
+                .append("city", city)
+                .append("zipCode", zipCode)
+                .toString();
     }
 }

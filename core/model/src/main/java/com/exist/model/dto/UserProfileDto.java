@@ -1,5 +1,6 @@
 package com.exist.model.dto;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
@@ -81,5 +82,18 @@ public class UserProfileDto extends UserAccountDto {
 
     public void setContactInfo(List<ContactDto> contactInfo) {
         this.contactInfo = contactInfo;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("name", name)
+                .append("address", address)
+                .append("birthDate", birthDate)
+                .append("gwa", gwa)
+                .append("dateHired", dateHired)
+                .append("currentlyEmployed", currentlyEmployed)
+                .append("contactInfo", contactInfo)
+                .toString();
     }
 }

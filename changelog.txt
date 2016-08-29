@@ -1,0 +1,59 @@
+AddressDto.java
+    - added toString()
+AdminController.java *
+    - Added sample way of handling multipart file
+    - added checking of content type. see http://www.freeformatter.com/mime-types-list.html
+        for a complete list.
+BaseException.java
+    - created base exception to declare messagCodes and args only once
+changelog.txt *
+    - this is the one you are reading right now
+ContactDto.java
+    - Added toString()
+contactModal.tag
+    - Removed csrf hidden input, cause i disabled csrf globally
+CSVRowDto.java *
+    - Created this class for flat mapping from csv rows
+dashboard.jsp *
+    - Added link for template.csv
+    - Added sample file upload
+DozerConfig.java *
+    - Added mapping from CsvRowDto.class tp UserPofileDto.class
+EntityDoesNotExistException.java
+    - removed fields, extended BaseException.java
+errors.properties, errors_ph.properties
+    - Added invalid file type error message
+ExceptionAdvice.java
+    - Added handling for InvalidFileTypeException
+index.jsp
+    - removed csrf hidden field
+InvalidFileTypeException.java
+    - Added this class for handling invalid file types
+NameDto.java
+    - Added toString()
+super, web, model, services pom.xml *
+    - added opencsv to deps
+    - added commons-fileupload dep / mgmt
+SecurityConfig.java *
+    - Added /template/** to PERMIT_ALL
+    - disabled csrf
+template.csv
+    - added tempalte.csv for file upload
+UserAccountDto.java
+    - added toString()
+UserAccountService.java *
+    - added uploadUsers method
+UserAccountServiceImpl.java *
+    - implemented uploadUsers method
+    - added the implementation of the opencsv library
+UserProfileDto.java
+    - added toString()
+WebConfig.java *
+    - added template mapping for downloadable template.csv
+    - added bean filterMultipartResolver of type StandardServletMultipartResolver
+            according to the tuts, eto daw yung for servlet 3.0
+WebInitializer.java *
+    - overriden customizeRegistration of servlet in webinitializer to set
+            the multipartconfig
+    - created a some kind of factory method for multipart config
+            set java.io.tmpdir as the temporary directory

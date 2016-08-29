@@ -61,6 +61,17 @@ public class DozerConfig {
 
                 mapping(UserProfile.class, UserProfileDto.class, TypeMappingOptions.oneWay());
 
+                mapping(CSVRowDto.class, UserProfileDto.class, TypeMappingOptions.dateFormat("yyyy-MM-dd"))
+                        .fields("title","name.title")
+                        .fields("firstName","name.firstName")
+                        .fields("middleName","name.middleName")
+                        .fields("lastName","name.lastName")
+                        .fields("suffix","name.suffix")
+                        .fields("streetNumber","address.streetNumber")
+                        .fields("barangay","address.barangay")
+                        .fields("city","address.city")
+                        .fields("zipCode","address.zipCode");
+
             }
         });
     }
