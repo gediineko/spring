@@ -1,7 +1,10 @@
 package com.exist.services.impl;
 
+import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
+import com.exist.model.entities.Contact;
 import com.exist.model.entities.UserProfile;
+import com.exist.repositories.jpa.ContactRepository;
 import com.exist.repositories.jpa.UserProfileRepository;
 import com.exist.services.UserProfileService;
 import org.dozer.Mapper;
@@ -21,6 +24,9 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Autowired
     private UserProfileRepository userProfileRepository;
+
+    @Autowired
+    private ContactRepository contactRepository;
 
     @Autowired
     private Mapper mapper;
@@ -50,5 +56,44 @@ public class UserProfileServiceImpl implements UserProfileService {
         UserProfile userProfile = userProfileOptl.get();
         userProfile.setContactInfo(userProfile.getContactInfo());
         return mapper.map(userProfileOptl.get(), UserProfileDto.class);
+    }
+
+    @Override
+    public void addContact(Long userId, ContactDto contactDto) {
+        UserProfile user = userProfileRepository.findOne(userId);
+        Contact contact = mapper.map(contactDto, Contact.class);
+        if (user != null){
+            contact.setUserProfile(user);
+            user.getContactInfo().add(contact);
+        }
+    }
+
+    @Override
+    public void removeContact(Long userId, Long contactId) {
+        UserProfile user = userProfileRepository.findOne(userId);
+        Contact contact = contactRepository.findOne(contactId);
+        if (user != null && contact != null) {
+            user.getContactInfo().remove(contact);
+            userProfileRepository.save(user);
+        }
+
+
+    }
+
+    @Override
+    public void updateContact(ContactDto contactDto) {
+        Contact contact = contactRepository.findOne(contactDto.getId());
+        if (contact != null) {
+            mapper.map(contactDto, contact);
+            contactRepository.save(contact);
+        }
+    }
+
+    @Override
+    public void delete(Long userId) {
+        UserProfile user = userProfileRepository.findOne(userId);
+        if(user != null){
+            userProfileRepository.delete(user);
+        }
     }
 }

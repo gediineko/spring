@@ -1,3 +1,4 @@
+<%@ page import="com.exist.model.dto.ContactDto" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -127,6 +128,7 @@
         </div>
     </form:form>
 
+    <!-- Person Contact -->
     <c:if test="${readonly}">
         <div class="row">
             <div class="col-md-6">
@@ -182,9 +184,79 @@
                                                 </button>
                                             </li>
                                             <li>
-                                                <form action="/user/profile/removeContact">
-                                                    <spring:message code="common.delete" text="Delete"/>
-                                                </form>
+                                                <form:form action="/user/profile/contact/delete" method="delete">
+                                                    <input type="hidden" name="userProfileId" value="${userProfile.id}">
+                                                    <input type="hidden" name="contactId" value="${contact.id}">
+                                                    <button class="btn btn-link" type="submit">
+                                                            <spring:message code="common.delete" text="Delete"/>
+                                                    </button>
+                                                </form:form>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </td>
+                            </tr>
+                            <t:contactModal mode="Update" contact="${contact}" user="${userProfile}"/>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Person Role -->
+            <div class="col-md-6">
+                <div>
+                    <h3>
+                        <spring:message code="user.profile.roleLabel" text="Role"/>
+                        <spring:message code="user.profile.addRole" text="Add Role" var="addRoleLbl"/>
+                        <button class="btn btn-primary pull-right <c:if test="${hidden}">hidden</c:if>"
+                                data-toggle="modal"
+                                data-target="#roleModal">
+                                ${addRoleLbl}
+                        </button>
+                    </h3>
+                </div>
+                <br>
+                <div>
+                    <table class="table table-condensed table-bordered">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="user.profile.roleLabel" text="Role Title"/></th>
+                            <th class="thAction <c:if test="${hidden}">hidden</c:if>">
+                                <spring:message code="common.actions" text="Actions"/>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <c:if test="${userProfile.roles.isEmpty()}">
+                            <tr>
+                                <td class="text-center" colspan="2">
+                                    <spring:message code="message.contact.personHasNoRole" text="Person has no Roles."/>
+                                </td>
+                            </tr>
+                        </c:if>
+                        <c:forEach var="role" items="${userProfile.roles}">
+                            <tr>
+                                <td>${role.name}</td>
+                                <td class="tdActions <c:if test="${hidden}">hidden</c:if>">
+                                    <span class="dropdown pull-right">
+                                        <button class="btn btn-default dropdown-toggle" type="button"
+                                            id="dropDownMenuRole${role.id}"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="true">
+                                            <spring:message code="common.actions" text="Actions"/>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropDownMenuRole${role.id}">
+                                            <li>
+                                                <form:form action="/user/profile/role/delete" method="delete">
+                                                    <input type="hidden" name="userProfileId" value="${userProfile.id}">
+                                                    <input type="hidden" name="roleId" value="${role.id}">
+                                                    <button class="btn btn-link" type="submit">
+                                                            <spring:message code="common.delete" text="Delete"/>
+                                                </form:form>
                                             </li>
                                         </ul>
                                     </span>
@@ -196,6 +268,9 @@
                 </div>
             </div>
         </div>
+
+
     </c:if>
+    <t:contactModal mode="Create" user="${userProfile}" contact="${newContact}"/>
 
 </t:main>

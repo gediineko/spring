@@ -2,6 +2,8 @@ package com.exist.model.dto;
 
 import com.exist.model.base.BaseDto;
 
+import java.util.Set;
+
 /**
  * Created by ggolong on 8/26/16.
  */
@@ -12,7 +14,7 @@ public class UserAccountDto extends BaseDto {
     private Boolean accountNonLocked = true;
     private Boolean credentialsNonExpired = true;
     private Boolean enabled = true;
-    private RoleDto role;
+    private Set<RoleDto> roles;
 
     public String getUsername() {
         return username;
@@ -62,11 +64,11 @@ public class UserAccountDto extends BaseDto {
         this.enabled = enabled;
     }
 
-    public RoleDto getRole() {
-        return role;
+    public Set<RoleDto> getRoles() {
+        return roles;
     }
 
-    public void setRole(RoleDto role) {
-        this.role = role;
+    public void setRoles(Set<RoleDto> roles) {
+        this.roles = roles;
     }
 }

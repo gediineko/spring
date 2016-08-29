@@ -41,7 +41,7 @@ public class UserAccount extends BaseEntity implements UserDetails {
     private Set<Role> roles = new HashSet<>();
 
 
-            public void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

@@ -1,5 +1,6 @@
 package com.exist.services;
 
+import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
 
 import java.util.List;
@@ -16,4 +17,13 @@ public interface UserProfileService {
     UserProfileDto create(UserProfileDto userProfileDto);
 
     UserProfileDto get(Long userId);
+
+    void addContact(Long userId, ContactDto contact);
+
+    void removeContact(Long userId, Long contactId);
+
+    void updateContact(ContactDto contactDto);
+
+
+    void delete(Long userId);
 }
