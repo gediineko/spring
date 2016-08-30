@@ -1,5 +1,7 @@
 package com.exist.model.dto;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * Created by ggolong on 8/26/16.
  */
@@ -48,5 +50,16 @@ public class NameDto {
 
     public void setSuffix(String suffix) {
         this.suffix = suffix;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("title", title)
+                .append("firstName", firstName)
+                .append("middleName", middleName)
+                .append("lastName", lastName)
+                .append("suffix", suffix)
+                .toString();
     }
 }

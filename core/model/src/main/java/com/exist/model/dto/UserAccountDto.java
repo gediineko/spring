@@ -1,6 +1,7 @@
 package com.exist.model.dto;
 
 import com.exist.model.base.BaseDto;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Set;
 
@@ -70,5 +71,18 @@ public class UserAccountDto extends BaseDto {
 
     public void setRoles(Set<RoleDto> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("username", username)
+                .append("newPassword", newPassword)
+                .append("accountNonExpired", accountNonExpired)
+                .append("accountNonLocked", accountNonLocked)
+                .append("credentialsNonExpired", credentialsNonExpired)
+                .append("enabled", enabled)
+                .append("roles", roles)
+                .toString();
     }
 }
