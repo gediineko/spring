@@ -93,7 +93,9 @@
         <ul class="nav navbar-nav pull-right">
             <li class="dropup">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                    <i class="fa fa-globe"></i> Language <span class="caret"></span>
+                    <i class="fa fa-globe"></i>
+                    <spring:message code="common.language" text="Language"/>
+                    <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="${requestScope.get('javax.servlet.forward.request_uri')}?lang=en">English</a></li>
