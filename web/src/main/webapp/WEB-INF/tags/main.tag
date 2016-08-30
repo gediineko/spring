@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@tag description="Main Template" pageEncoding="UTF-8" %>
 <%@attribute name="title" required="true" %>
 <!doctype html>
@@ -40,11 +41,13 @@
             <ul class="nav navbar-nav">
 
                 <li
-                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/person') }">
+                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/user') }">
                             class="active"
                         </c:if>
                 >
-                    <a href="/admin/person">Person Management</a>
+                    <a href="/admin/user/">
+                        <spring:message code="common.userManagement" text="User Management"/>
+                    </a>
                 </li>
 
                 <li
@@ -52,7 +55,19 @@
                             class="active"
                         </c:if>
                 >
-                    <a href="/admin/role">Role Management</a>
+                    <a href="/admin/role/">
+                        <spring:message code="common.roleManagement" text="Role Management"/>
+                    </a>
+                </li>
+
+                <li
+                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/person')}">
+                            class="active"
+                        </c:if>
+                        >
+                    <a href="/admin/person/">
+                        <spring:message code="common.personManagement" text="Person Management"/>
+                    </a>
                 </li>
             </ul>
 
@@ -60,7 +75,9 @@
         <sec:authorize access="isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/logout">Log out</a>
+                    <a href="/logout">
+                        <spring:message code="common.logOut" text="Log-out"/>
+                    </a>
                 </li>
             </ul>
         </sec:authorize>
