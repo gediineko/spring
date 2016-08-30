@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -28,11 +30,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 .addResourceHandler("/css/**",
                         "/images/**",
                         "/js/**",
-                        "/fonts/**")
+                        "/fonts/**",
+                        "/template/**")
                 .addResourceLocations("/resources/css/",
                         "/resources/images/",
                         "/resources/js/",
-                        "/resources/fonts/");
+                        "/resources/fonts/",
+                        "/resources/template/");
     }
 
     @Bean
@@ -70,5 +74,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
+    }
+
+    @Bean(name = "filterMultipartResolver")
+    public MultipartResolver filterMultipartResolver(){
+        return new StandardServletMultipartResolver();
     }
 }
