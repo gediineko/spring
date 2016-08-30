@@ -6,20 +6,14 @@
         <h1 class="text-center">
             <spring:message code="common.adminDash" text="Administrator Dashboard"/>
         </h1>
+        <h3 class="text-center">
+            <spring:message code="common.loggedInAs" text="Logged-in as <username>"/>
+        </h3>
     </div>
     <br><br>
     <div class="row">
-        <div class="col-md-4">
-            <a href="/role" class="btn btn-primary btn-block main-links">
-                <i class="fa fa-5x fa-users"></i>
-                <br>
-                <p class="h2">
-                    <spring:message code="common.userManagement" text="User Management"/>
-                </p>
-            </a>
-        </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 col-md-offset-2">
             <a href="/role" class="btn btn-primary btn-block main-links">
                 <i class="fa fa-5x fa-briefcase"></i>
                 <br>

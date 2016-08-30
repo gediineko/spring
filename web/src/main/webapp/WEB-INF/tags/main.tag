@@ -41,16 +41,6 @@
             <ul class="nav navbar-nav">
 
                 <li
-                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/user') }">
-                            class="active"
-                        </c:if>
-                >
-                    <a href="/admin/user/">
-                        <spring:message code="common.userManagement" text="User Management"/>
-                    </a>
-                </li>
-
-                <li
                         <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/role')}">
                             class="active"
                         </c:if>
