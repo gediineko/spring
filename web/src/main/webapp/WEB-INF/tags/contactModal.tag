@@ -11,8 +11,14 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
+                <c:if test="${mode.equals('Create')}">
+                    <spring:message code="contactmodal.create" text="Create Contact" var="modeLabel"/>
+                </c:if>
+                <c:if test="${mode.equals('Update')}">
+                    <spring:message code="contactmodal.update" text="Update Contact" var="modeLabel"/>
+                </c:if>
                 <h4 class="modal-title" id="contactModalTitle${contact.id}">
-                    ${mode} Contact
+                    ${modeLabel}
                 </h4>
             </div>
             <div class="modal-body">
@@ -26,7 +32,9 @@
                             <spring:message code="user.profile.contactType" text="Type"/>
                         </label>
                         <select name="contactType" id="contactType" class="form-control" required>
-                            <option value="">Select One</option>
+                            <option value="">
+                                <spring:message code="contactmodal.selectOne" text="Select One"/>
+                            </option>
                             <option value="Mobile Number" ${contact.contactType.equals('Mobile Number') ? 'selected' : ''}>Mobile Number</option>
                             <option value="Land Line"  ${contact.contactType.equals('Land Line') ? 'selected' : ''}>Land Line</option>
                             <option value="Email"  ${contact.contactType.equals('Email') ? 'selected' : ''}>Email</option>
@@ -45,8 +53,12 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" form="contactForm${contact.id}">${mode.equals('Edit') ? 'Save Changes' : 'Submit'}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <spring:message code="common.close" text="Close"/>
+                </button>
+                <button type="submit" class="btn btn-primary" form="contactForm${contact.id}">
+                    <spring:message code="common.submit" text="Submit"/>
+                </button>
             </div>
         </div>
     </div>
