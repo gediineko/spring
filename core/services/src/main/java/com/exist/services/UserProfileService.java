@@ -25,6 +25,5 @@ public interface UserProfileService {
 
     void updateContact(ContactDto contactDto);
 
-
     void delete(Long userId);
 }

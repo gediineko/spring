@@ -3,6 +3,7 @@ package com.exist.web.controllers;
 import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
 import com.exist.model.exception.EntityDoesNotExistException;
+import com.exist.services.RoleService;
 import com.exist.services.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,13 +26,20 @@ public class UserController {
         return "user/list";
     }
 
+    @RequestMapping(path = "/role")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String role(){
+        //model attribute list of roles
+        return "role/list";
+    }
+
     @RequestMapping(path = "/profile/{userId}")
     @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userId)")
     public String profile(@PathVariable Long userId, Model model) throws EntityDoesNotExistException {
         UserProfileDto userProfile = userProfileService.get(userId);
         model.addAttribute("userProfile", userProfile);
         model.addAttribute("readonly", true);
-        model.addAttribute("hidden", true);
+        model.addAttribute("hidden", false);
         return "user/profile";
     }
 
@@ -76,5 +84,6 @@ public class UserController {
         userProfileService.updateContact(contactDto);
         return "redirect:/user/profile/" + userProfileId;
     }
+
 
 }

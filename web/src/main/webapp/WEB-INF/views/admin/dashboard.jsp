@@ -7,14 +7,14 @@
             <spring:message code="common.adminDash" text="Administrator Dashboard"/>
         </h1>
         <h3 class="text-center">
-            <spring:message code="common.loggedInAs" text="Logged-in as <username>"/>
+            <spring:message code="common.loggedInAs" text="Logged-in as "/>
         </h3>
     </div>
     <br><br>
     <div class="row">
 
         <div class="col-md-4 col-md-offset-2">
-            <a href="/role" class="btn btn-primary btn-block main-links">
+            <a href="/user/role" class="btn btn-primary btn-block main-links">
                 <i class="fa fa-5x fa-briefcase"></i>
                 <br>
                 <p class="h2">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="col-md-4">
-            <a href="/person" class="btn btn-primary btn-block main-links">
+            <a href="/user" class="btn btn-primary btn-block main-links">
                 <i class="fa fa-5x fa-user"></i>
                 <br>
                 <p class="h2">

@@ -232,7 +232,7 @@
                         <c:if test="${userProfile.roles.isEmpty()}">
                             <tr>
                                 <td class="text-center" colspan="2">
-                                    <spring:message code="message.contact.personHasNoRole" text="Person has no Roles."/>
+                                    <spring:message code="message.role.personHasNoRole" text="Person has no Roles."/>
                                 </td>
                             </tr>
                         </c:if>
