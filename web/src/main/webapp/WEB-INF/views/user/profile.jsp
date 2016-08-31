@@ -1,4 +1,3 @@
-<%@ page import="com.exist.model.dto.ContactDto" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -9,7 +8,14 @@
         <form:hidden path="id"/>
 
         <div class="text-center">
-            <h1><spring:message code="profile.header" text="My Profile"/></h1>
+            <h1>
+                <spring:message code="profile.header" text="My Profile"/>
+            </h1>
+
+            <a href="/user/update/${userProfileDto.id}">
+                <spring:message code="common.update" text="Update"/>
+                <i class="fa fa-pencil-square-o"></i>
+            </a>
         </div>
 
         <div class="row">
@@ -126,6 +132,7 @@
                 </div>
             </div>
         </div>
+
     </form:form>
 
     <!-- Person Contact -->
@@ -139,7 +146,8 @@
                         <button class="btn btn-primary pull-right <c:if test="${hidden}">hidden</c:if>"
                                 data-toggle="modal"
                                 data-target="#contactModal">
-                                ${addContactLbl}
+                                ${addCon                <span class="caret"></span>
+tactLbl}
                         </button>
                     </h3>
                 </div>

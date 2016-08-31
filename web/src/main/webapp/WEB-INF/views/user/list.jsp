@@ -50,6 +50,9 @@
                     <spring:message code="user.list.id" text="ID"/>
                 </th>
                 <th>
+                    <spring:message code="user.list.username" text="Username"/>
+                </th>
+                <th>
                     <spring:message code="user.profile.name" text="Name"/>
                 </th>
                 <th>
@@ -76,7 +79,7 @@
             <tbody>
             <c:if test="${userList.isEmpty()}">
                 <tr>
-                    <td class="text-center" colspan="7">
+                    <td> class="text-center" colspan="8">
                         <spring:message code="message.person.noPersonFound" text="No Person Found."/>
                     </td>
                 </tr>
@@ -85,6 +88,7 @@
             <c:forEach var="user" items="${userList}">
                 <tr>
                     <td>${user.id}</td>
+                    <td>${user.username}</td>
                     <td>${user.name}</td>
                     <td>${user.address}</td>
                     <td>${user.birthDate}</td>

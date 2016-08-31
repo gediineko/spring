@@ -2,6 +2,7 @@ package com.exist.web.controllers;
 
 import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
+import com.exist.model.entities.Role;
 import com.exist.model.exception.EntityDoesNotExistException;
 import com.exist.services.RoleService;
 import com.exist.services.UserProfileService;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Entity;
+
 
 @Controller
 @RequestMapping("/user")
@@ -18,6 +21,9 @@ public class UserController {
 
     @Autowired
     private UserProfileService userProfileService;
+
+    @Autowired
+    private RoleService roleService;
 
     @RequestMapping
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -28,8 +34,8 @@ public class UserController {
 
     @RequestMapping(path = "/role")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String role(){
-        //model attribute list of roles
+    public String role(Model model){
+        model.addAttribute("roleList", roleService.getAll());
         return "role/list";
     }
 
@@ -50,11 +56,17 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    //in progress
+    @RequestMapping(path = "/update/{userId}", method = RequestMethod.PUT)
     @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userProfile.id)")
-    public String update(@ModelAttribute UserProfileDto userProfile){
+    public String update(@ModelAttribute UserProfileDto userProfile, @PathVariable Long userId, Model model)
+            throws EntityDoesNotExistException {
+        userProfile = userProfileService.get(userId);
+        model.addAttribute("userProfile", userProfile);
+        model.addAttribute("readonly", false);
+        model.addAttribute("hidden", false);
         userProfileService.update(userProfile);
-        return "redirect:/user/profile/" + userProfile.getId();
+        return "user/profile";
     }
 
     @RequestMapping(path="/delete/{userId}", method = RequestMethod.DELETE)

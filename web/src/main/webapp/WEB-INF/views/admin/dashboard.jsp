@@ -6,9 +6,7 @@
         <h1 class="text-center">
             <spring:message code="common.adminDash" text="Administrator Dashboard"/>
         </h1>
-        <h3 class="text-center">
-            <spring:message code="common.loggedInAs" text="Logged-in as "/>
-        </h3>
+
     </div>
     <br><br>
     <div class="row">

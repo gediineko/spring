@@ -6,12 +6,14 @@ import com.exist.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
  * Created by ggolong on 8/26/16.
  */
+@Service
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
