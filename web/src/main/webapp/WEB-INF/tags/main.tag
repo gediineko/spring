@@ -28,7 +28,7 @@
                         href="/admin"
                     </sec:authorize>
                     <sec:authorize access="hasAuthority('USER')">
-                        href="/profile"
+                        href="/#"
                     </sec:authorize>
                     <sec:authorize access="isAnonymous()">
                         href="/"
