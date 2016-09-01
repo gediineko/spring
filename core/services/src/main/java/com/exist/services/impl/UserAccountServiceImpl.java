@@ -4,9 +4,11 @@ import com.exist.model.dto.CSVRowDto;
 import com.exist.model.dto.UserAccountDto;
 import com.exist.model.dto.UserProfileDto;
 import com.exist.model.entities.UserAccount;
+import com.exist.model.exception.EntityAlreadyExistsException;
 import com.exist.model.ref.RoleType;
 import com.exist.repositories.jpa.UserAccountRepository;
 import com.exist.services.UserAccountService;
+import com.exist.services.UserProfileService;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.HeaderColumnNameMappingStrategy;
 import org.dozer.Mapper;
@@ -35,6 +37,9 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Autowired
     private UserAccountRepository userAccountRepository;
+
+    @Autowired
+    private UserProfileService userProfileService;
 
     @Override
     @Transactional(readOnly = true)
@@ -102,22 +107,28 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public void uploadUsers(MultipartFile file) throws IOException {
-        // tells that mapping will be based on column, the first line of your csv file
         HeaderColumnNameMappingStrategy<CSVRowDto> strategy = new HeaderColumnNameMappingStrategy<>();
         strategy.setType(CSVRowDto.class);
 
-        //instantiated the csv to bean
         CsvToBean<CSVRowDto> csvToBean = new CsvToBean<>();
-        //parsed the ccsv fows to list of csvRowsDto
         List<CSVRowDto> csvRowDtos = csvToBean.parse(strategy, new InputStreamReader(file.getInputStream()));
 
         csvRowDtos.stream()
                 .map(row -> mapper.map(row, UserProfileDto.class))
-                .forEach(System.out::println);
-        // At this point you can forEach the mapped UserProfileDto
-        // to check if its exising or not (with or without id
-        // and  persistent entity via repo.findOne()
-        // then map it from dto to entity then save
-        // this can handle both update and create
+                .forEach(userProfileDto -> {
+                    if(userProfileDto.getId() == null || userProfileDto.getId() == 0){
+                        try {
+                            userProfileService.create(userProfileDto);
+                        } catch (EntityAlreadyExistsException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        try {
+                            userProfileService.update(userProfileDto);
+                        } catch (EntityAlreadyExistsException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 }

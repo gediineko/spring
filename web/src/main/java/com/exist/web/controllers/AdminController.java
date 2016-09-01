@@ -5,7 +5,6 @@ import com.exist.services.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,13 +31,13 @@ public class AdminController {
         return "admin/list";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String test(@RequestParam("file") MultipartFile file) throws InvalidFileTypeException, IOException {
+    @RequestMapping(path = "/user/upload", method = RequestMethod.POST)
+    public String uploadAccounts(@RequestParam("file") MultipartFile file) throws InvalidFileTypeException, IOException {
         if(!file.getContentType().equals("text/csv")){
             throw new InvalidFileTypeException("Invalid File Type!", "error.invalid.fileType", new Object[]{"CSV"});
         }
         userAccountService.uploadUsers(file);
 
-        return "redirect:/admin";
+        return "redirect:/user";
     }
 }

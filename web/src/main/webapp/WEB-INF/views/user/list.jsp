@@ -18,26 +18,58 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="sortDropDown">
                 <li>
-                    <a href="/user/listByGwa">
-                        <spring:message code="user.list.sortByGwa" text="by Gwa"/>
+                    <a href="/user?sort=gwa&dir=asc">
+                        <spring:message code="user.list.sortByGwaAsc" text="by Gwa: ASC"/>
                     </a>
                 </li>
                 <li>
-                    <a href="/user/listByDateHired">
-                        <spring:message code="user.list.sortByDateHired" text="by Date Hired"/>
+                    <a href="/user?sort=gwa&dir=desc">
+                        <spring:message code="user.list.sortByGwaDesc" text="by Gwa: DESC"/>
                     </a>
                 </li>
                 <li>
-                    <a href="/user/listByLastName">
-                        <spring:message code="user.list.sortByLastName" text="by Last Name"/>
+                    <a href="/user/?sort=dateHired&dir=asc">
+                        <spring:message code="user.list.sortByDateHiredAsc" text="by Date Hired: ASC"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/?sort=dateHired&dir=desc">
+                        <spring:message code="user.list.sortByDateHiredDesc" text="by Date Hired: DESC"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/?sort=lastName&dir=asc">
+                        <spring:message code="user.list.sortByLastNameAsc" text="by Last Name: ASC"/>
+                    </a>
+                </li>
+                </li>
+                <li>
+                    <a href="/user/?sort=lastName&dir=desc">
+                        <spring:message code="user.list.sortByLastNameDesc" text="by Last Name: DESC"/>
                     </a>
                 </li>
             </ul>
         </div>
         <div class="col-md-4">
-            <a href="/user/create" class="btn btn-primary">
-                <spring:message code="user.list.createPerson.button" text="New Person"/>
-            </a>
+            <button class="btn btn-default dropdown-toggle" type="button" id="createToggle"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <spring:message code="user.list.newPerson.button" text="New Person"/>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="sortDropDown">
+                <li>
+                    <a href="/user/create">
+                        <spring:message code="user.list.create.button" text="Create Person"/>
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                    <form action="/admin/user/upload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="file" onchange="this.form.submit()" class="form-control">
+                    </form>
+                </li>
+
+            </ul>
         </div>
     </div>
     <br>
@@ -113,8 +145,8 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu${user.id}">
                                 <li><a href="/user/profile/${user.id}">View Person</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/user/edit/${user.id}">Edit Person Details</a></li>
-                                <li><a href="/user/editPersonContactRole/${user.id}">Edit Contacts & Roles</a></li>
+                                <li><a href="/user/update/${user.id}">Edit Person Details</a></li>
+                                <li><a href="/user/update/contactRole/${user.id}">Edit Contacts & Roles</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li>
                                     <form action="/user/delete" method="post"

@@ -4,12 +4,15 @@ import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
 import com.exist.model.entities.Contact;
 import com.exist.model.entities.UserProfile;
+import com.exist.model.exception.EntityAlreadyExistsException;
 import com.exist.model.exception.EntityDoesNotExistException;
 import com.exist.repositories.jpa.ContactRepository;
 import com.exist.repositories.jpa.UserProfileRepository;
 import com.exist.services.UserProfileService;
+import org.apache.commons.lang3.StringUtils;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,38 +35,67 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Autowired
     private Mapper mapper;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
-    public List<UserProfileDto> getAll() {
+    public List<UserProfileDto> getAll(String sortProp, String sortDir) {
         return userProfileRepository.findAll()
                 .stream()
                 .map(u -> mapper.map(u, UserProfileDto.class))
+                .sorted((u1, u2) -> {
+                    if (StringUtils.isNotBlank(sortProp) && StringUtils.isNotBlank(sortDir)) {
+                        switch (sortProp) {
+                            case "gwa":
+                                return Double.compare(u1.getGwa(), u2.getGwa()) * (sortDir.equals("asc") ? 1 : -1);
+                            case "dateHired":
+                                return u1.getDateHired().compareTo(u2.getDateHired()) * (sortDir.equals("asc") ? 1 : -1);
+                            case "lastName":
+                                return u1.getName().getLastName().compareTo(u2.getName().getLastName()) * (sortDir.equals("asc") ? 1 : -1);
+                        }
+                    }
+                    return Long.compare(u1.getId(), u2.getId());
+                })
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<UserProfileDto> getAllByGwa() {
-        return null;
+    public UserProfileDto update(UserProfileDto userProfileDto) throws EntityAlreadyExistsException {
+
+        UserProfile existingUser = Optional.ofNullable(userProfileRepository.getOne(userProfileDto.getId()))
+                .orElseThrow(() -> new EntityAlreadyExistsException(
+                        "User with that ID Does not exist: " + userProfileDto.getId(),
+                        "error.user.notExists",
+                        new Object[]{userProfileDto.getId()}));
+
+        mapper.map(userProfileDto, existingUser);
+
+        if(StringUtils.isNotBlank(userProfileDto.getNewPassword()) && !existingUser.getPassword().equals(userProfileDto.getNewPassword())){
+            existingUser.setPassword(passwordEncoder.encode(userProfileDto.getNewPassword()));
+        }
+        return mapper.map(userProfileRepository.save(existingUser), UserProfileDto.class);
     }
 
     @Override
-    public List<UserProfileDto> getAllByDateHired() {
-        return null;
-    }
+    public UserProfileDto create(UserProfileDto userProfileDto) throws EntityAlreadyExistsException {
 
-    @Override
-    public List<UserProfileDto> getAllByLastName() {
-        return null;
-    }
+        Optional<UserProfile> existingUser = userProfileRepository.findByUsername(userProfileDto.getUsername());
+        if(existingUser.isPresent()){
+            throw new EntityAlreadyExistsException(
+                    "User with that username already exists: " + userProfileDto.getUsername(),
+                    "error.user.exists",
+                    new Object[]{userProfileDto.getUsername()});
+        }
 
-    @Override
-    public UserProfileDto update(UserProfileDto userProfileDto) {
-        return null;
-    }
+        UserProfile newUserProfile = new UserProfile();
+        mapper.map(userProfileDto, newUserProfile);
 
-    @Override
-    public UserProfileDto create(UserProfileDto userProfileDto) {
-        return null;
+        newUserProfile.setId(null);
+        newUserProfile.setUsername(userProfileDto.getUsername());
+        newUserProfile.setPassword(passwordEncoder.encode(userProfileDto.getNewPassword()));
+
+        return mapper.map(userProfileRepository.save(newUserProfile), UserProfileDto.class);
     }
 
     @Transactional(readOnly = true)

@@ -17,7 +17,7 @@ public abstract class BaseEntity implements Persistable<Long>, Serializable {
     private static final long serialVersionUID = 8961456115964444813L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Override

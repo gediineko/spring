@@ -1,6 +1,7 @@
 package com.exist.services;
 
 import com.exist.model.dto.RoleDto;
+import com.exist.model.exception.EntityAlreadyExistsException;
 
 import java.util.Set;
 
@@ -9,7 +10,7 @@ import java.util.Set;
  */
 public interface RoleService {
     Set<RoleDto> getAll();
-    RoleDto create();
-    RoleDto update();
-    void delete(Long roleId);
+    RoleDto create(RoleDto roleDto) throws EntityAlreadyExistsException;
+    RoleDto update(RoleDto roleDto) throws EntityAlreadyExistsException;
+    void delete(Long roleId) throws EntityAlreadyExistsException;
 }

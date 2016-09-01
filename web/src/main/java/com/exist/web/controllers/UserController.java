@@ -2,7 +2,7 @@ package com.exist.web.controllers;
 
 import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
-import com.exist.model.entities.Role;
+import com.exist.model.exception.EntityAlreadyExistsException;
 import com.exist.model.exception.EntityDoesNotExistException;
 import com.exist.services.RoleService;
 import com.exist.services.UserProfileService;
@@ -11,8 +11,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.Entity;
 
 
 @Controller
@@ -27,8 +25,8 @@ public class UserController {
 
     @RequestMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String get(Model model){
-        model.addAttribute("userList", userProfileService.getAll());
+    public String get(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "dir", required = false) String dir, Model model){
+        model.addAttribute("userList", userProfileService.getAll(sort, dir));
         return "user/list";
     }
 
@@ -41,7 +39,7 @@ public class UserController {
 
     @RequestMapping(path = "/role/delete")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String deleteRole(@RequestParam Long roleId){
+    public String deleteRole(@RequestParam Long roleId) throws EntityAlreadyExistsException {
         roleService.delete(roleId);
         return "role/list";
     }
@@ -58,22 +56,39 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String create(@ModelAttribute UserProfileDto userProfile){
+    public String create(@ModelAttribute UserProfileDto userProfile) throws EntityAlreadyExistsException {
         userProfileService.create(userProfile);
         return "redirect:/user";
     }
 
-    //in progress
-    @RequestMapping(path = "/update/{userId}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/update/{userId}", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userProfile.id)")
-    public String update(@ModelAttribute UserProfileDto userProfile, @PathVariable Long userId, Model model)
+    public String update(@PathVariable Long userId, Model model)
             throws EntityDoesNotExistException {
-        userProfile = userProfileService.get(userId);
+        UserProfileDto userProfile = userProfileService.get(userId);
         model.addAttribute("userProfile", userProfile);
         model.addAttribute("readonly", false);
         model.addAttribute("hidden", false);
-        userProfileService.update(userProfile);
+        model.addAttribute("createMode", false);
         return "user/profile";
+    }
+
+    @RequestMapping(path = "/update/contactRole/{userId}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userProfile.id)")
+    public String updateContactRole(@PathVariable Long userId, Model model)
+            throws EntityDoesNotExistException {
+        UserProfileDto userProfile = userProfileService.get(userId);
+        model.addAttribute("userProfile", userProfile);
+        model.addAttribute("readonly", true);
+        model.addAttribute("hidden", false);
+        return "user/profile";
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userProfile.id)")
+    public String update(@ModelAttribute UserProfileDto userProfile) throws EntityAlreadyExistsException {
+        userProfileService.update(userProfile);
+        return "redirect:/user/profile/" + userProfile.getId();
     }
 
     @RequestMapping(path="/delete/{userId}", method = RequestMethod.DELETE)

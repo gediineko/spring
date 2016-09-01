@@ -11,11 +11,12 @@
             <h1>
                 <spring:message code="profile.header" text="My Profile"/>
             </h1>
-
-            <a href="/user/update/${userProfileDto.id}">
-                <spring:message code="common.update" text="Update"/>
-                <i class="fa fa-pencil-square-o"></i>
-            </a>
+            <c:if test="${readonly == true}">
+                <a href="/user/update/${userProfileDto.id}">
+                    <spring:message code="common.update" text="Update"/>
+                    <i class="fa fa-pencil-square-o"></i>
+                </a>
+            </c:if>
         </div>
 
         <div class="row">
@@ -132,6 +133,11 @@
                 </div>
             </div>
         </div>
+        <c:if test="${readonly == false}">
+            <div class="row">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </c:if>
 
     </form:form>
 
@@ -249,10 +255,10 @@
                                 <td class="tdActions <c:if test="${hidden}">hidden</c:if>">
                                     <span class="dropdown pull-right">
                                         <button class="btn btn-default dropdown-toggle" type="button"
-                                            id="dropDownMenuRole${role.id}"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true"
-                                            aria-expanded="true">
+                                                id="dropDownMenuRole${role.id}"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="true">
                                             <spring:message code="common.actions" text="Actions"/>
                                             <span class="caret"></span>
                                         </button>

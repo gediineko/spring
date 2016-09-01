@@ -2,6 +2,7 @@ package com.exist.services;
 
 import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
+import com.exist.model.exception.EntityAlreadyExistsException;
 import com.exist.model.exception.EntityDoesNotExistException;
 
 import java.util.List;
@@ -11,17 +12,11 @@ import java.util.List;
  */
 public interface UserProfileService {
 
-    List<UserProfileDto> getAll();
+    List<UserProfileDto> getAll(String sortProp, String sortDir);
 
-    List<UserProfileDto> getAllByGwa();
+    UserProfileDto update(UserProfileDto userProfileDto) throws EntityAlreadyExistsException;
 
-    List<UserProfileDto> getAllByDateHired();
-
-    List<UserProfileDto> getAllByLastName();
-
-    UserProfileDto update(UserProfileDto userProfileDto);
-
-    UserProfileDto create(UserProfileDto userProfileDto);
+    UserProfileDto create(UserProfileDto userProfileDto) throws EntityAlreadyExistsException;
 
     UserProfileDto get(Long userId) throws EntityDoesNotExistException;
 
