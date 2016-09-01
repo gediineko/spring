@@ -11,12 +11,22 @@
             <h1>
                 <spring:message code="profile.header" text="My Profile"/>
             </h1>
+
             <c:if test="${readonly == true}">
-                <a href="/user/update/${userProfileDto.id}">
-                    <spring:message code="common.update" text="Update"/>
-                    <i class="fa fa-pencil-square-o"></i>
-                </a>
+                <div>
+                    <a href="/user/update/${userProfile.id}">
+                        <spring:message code="common.update" text="Update"/>
+                        <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                </div>
             </c:if>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <form:label path="username">Username</form:label>
+                <form:input path="username" cssClass="form-control" readonly="true"/>
+            </div>
         </div>
 
         <div class="row">
@@ -68,6 +78,7 @@
 
             <div class="col-md-6">
                 <h3><spring:message code="user.profile.address" text="Address"/></h3>
+
                 <div class="row">
                     <div class="form-group col-md-6">
                         <spring:message code="user.profile.streetNumber" text="Street Number" var="streetNumberLbl"/>
@@ -186,7 +197,7 @@
                                         <button class="btn btn-default btn-block dropdown-toggle"
                                                 type="button" id="dropDownMenuContact${contact.id}"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                <spring:message code="common.actions" text="Actions"/>
+                                            <spring:message code="common.actions" text="Actions"/>
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuContact${contact.id}">
@@ -201,7 +212,7 @@
                                                     <input type="hidden" name="userProfileId" value="${userProfile.id}">
                                                     <input type="hidden" name="contactId" value="${contact.id}">
                                                     <button class="btn btn-link" type="submit">
-                                                            <spring:message code="common.delete" text="Delete"/>
+                                                        <spring:message code="common.delete" text="Delete"/>
                                                     </button>
                                                 </form:form>
                                             </li>
@@ -230,6 +241,7 @@
                     </h3>
                 </div>
                 <br>
+
                 <div>
                     <table class="table table-condensed table-bordered">
                         <thead>
@@ -265,11 +277,11 @@
                                         <ul class="dropdown-menu" aria-labelledby="dropDownMenuRole${role.id}">
                                             <li>
                                                 <form:form action="/user/profile/role/delete" method="delete">
-                                                    <input type="hidden" name="userProfileId" value="${userProfile.id}">
-                                                    <input type="hidden" name="roleId" value="${role.id}">
-                                                    <button class="btn btn-link" type="submit">
-                                                            <spring:message code="common.delete" text="Delete"/>
-                                                </form:form>
+                                                <input type="hidden" name="userProfileId" value="${userProfile.id}">
+                                                <input type="hidden" name="roleId" value="${role.id}">
+                                                <button class="btn btn-link" type="submit">
+                                                        <spring:message code="common.delete" text="Delete"/>
+                                                    </form:form>
                                             </li>
                                         </ul>
                                     </span>

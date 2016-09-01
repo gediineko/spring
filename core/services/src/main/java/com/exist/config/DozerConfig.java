@@ -56,8 +56,9 @@ public class DozerConfig {
                 mapping(
                         UserProfileDto.class,
                         UserProfile.class,
-                        TypeMappingOptions.oneWay()
-                ).exclude("id");
+                        TypeMappingOptions.oneWay(),
+                        TypeMappingOptions.mapNull(false)
+                ).exclude("id").exclude("roles").exclude("contactInfo");
 
                 mapping(UserProfile.class, UserProfileDto.class, TypeMappingOptions.oneWay());
 

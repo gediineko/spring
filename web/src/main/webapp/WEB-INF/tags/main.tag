@@ -45,7 +45,7 @@
                             class="active"
                         </c:if>
                 >
-                    <a href="/user/role/">
+                    <a href="/user/role">
                         <spring:message code="common.roleManagement" text="Role Management"/>
                     </a>
                 </li>
@@ -55,7 +55,7 @@
                             class="active"
                         </c:if>
                         >
-                    <a href="/user">
+                    <a href="/role">
                         <spring:message code="common.personManagement" text="Person Management"/>
                     </a>
                 </li>

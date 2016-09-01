@@ -11,8 +11,8 @@
     <br><br>
     <div class="row">
 
-        <div class="col-md-4 col-md-offset-2">
-            <a href="/user/role" class="btn btn-primary btn-block main-links">
+        <div class="col-md-4">
+            <a href="/role" class="btn btn-primary btn-block main-links">
                 <i class="fa fa-5x fa-briefcase"></i>
                 <br>
                 <p class="h2">
@@ -23,7 +23,7 @@
 
         <div class="col-md-4">
             <a href="/user" class="btn btn-primary btn-block main-links">
-                <i class="fa fa-5x fa-user"></i>
+                <i class="fa fa-5x fa-users"></i>
                 <br>
                 <p class="h2">
                     <spring:message code="common.personManagement" text="Person Management"/>

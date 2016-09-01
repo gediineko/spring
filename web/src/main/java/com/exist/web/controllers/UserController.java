@@ -30,12 +30,7 @@ public class UserController {
         return "user/list";
     }
 
-    @RequestMapping(path = "/role")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public String role(Model model){
-        model.addAttribute("roleList", roleService.getAll());
-        return "role/list";
-    }
+
 
     @RequestMapping(path = "/role/delete")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -50,7 +45,7 @@ public class UserController {
         UserProfileDto userProfile = userProfileService.get(userId);
         model.addAttribute("userProfile", userProfile);
         model.addAttribute("readonly", true);
-        model.addAttribute("hidden", false);
+        model.addAttribute("hidden", true);
         return "user/profile";
     }
 
@@ -62,7 +57,7 @@ public class UserController {
     }
 
     @RequestMapping(path = "/update/{userId}", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userProfile.id)")
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userId)")
     public String update(@PathVariable Long userId, Model model)
             throws EntityDoesNotExistException {
         UserProfileDto userProfile = userProfileService.get(userId);
