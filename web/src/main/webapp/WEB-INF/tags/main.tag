@@ -41,7 +41,7 @@
             <ul class="nav navbar-nav">
 
                 <li
-                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/role')}">
+                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/user/role')}">
                             class="active"
                         </c:if>
                 >
@@ -51,12 +51,22 @@
                 </li>
 
                 <li
-                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/person')}">
+                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/user')}">
                             class="active"
                         </c:if>
                         >
                     <a href="/user">
                         <spring:message code="common.personManagement" text="Person Management"/>
+                    </a>
+                </li>
+
+                <li
+                        <c:if test="${fn:startsWith(requestScope.get('javax.servlet.forward.request_uri'), '/admin/list')}">
+                            class="active"
+                        </c:if>
+                        >
+                    <a href="/admin/list">
+                        <spring:message code="common.adminManagement" text="Admin Management"/>
                     </a>
                 </li>
             </ul>

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by ggolong on 8/26/16.
@@ -34,6 +35,24 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
     public List<UserProfileDto> getAll() {
+        return userProfileRepository.findAll()
+                .stream()
+                .map(u -> mapper.map(u, UserProfileDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserProfileDto> getAllByGwa() {
+        return null;
+    }
+
+    @Override
+    public List<UserProfileDto> getAllByDateHired() {
+        return null;
+    }
+
+    @Override
+    public List<UserProfileDto> getAllByLastName() {
         return null;
     }
 

@@ -8,6 +8,7 @@
         <spring:message code="user.list.label" text="Person Details List"/>
     </h1>
 
+    <!-- menus -->
     <div class="row pull-right">
         <div class="col-md-4">
             <button class="btn btn-default dropdown-toggle" type="button" id="sortDropDown"
@@ -91,7 +92,6 @@
                     <td>${user.username}</td>
                     <td>${user.name}</td>
                     <td>${user.address}</td>
-                    <td>${user.birthDate}</td>
                     <td>
                         <fmt:formatDate value="${user.birthDate}" var="birthDate" pattern="yyyy-MM-dd"/>
                             ${birthDate}
@@ -117,7 +117,7 @@
                                 <li><a href="/user/editPersonContactRole/${user.id}">Edit Contacts & Roles</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li>
-                                    <form action="/user/removePerson" method="post"
+                                    <form action="/user/delete" method="post"
                                           id="deleteForm${role.id}">
                                         <input type="hidden" name="personId" value="${user.id}">
                                         <button class="btn btn-link" type="submit">Delete</button>

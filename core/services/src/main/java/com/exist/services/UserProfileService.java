@@ -13,6 +13,12 @@ public interface UserProfileService {
 
     List<UserProfileDto> getAll();
 
+    List<UserProfileDto> getAllByGwa();
+
+    List<UserProfileDto> getAllByDateHired();
+
+    List<UserProfileDto> getAllByLastName();
+
     UserProfileDto update(UserProfileDto userProfileDto);
 
     UserProfileDto create(UserProfileDto userProfileDto);

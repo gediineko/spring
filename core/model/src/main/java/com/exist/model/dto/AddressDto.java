@@ -1,5 +1,6 @@
 package com.exist.model.dto;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
@@ -45,12 +46,17 @@ public class AddressDto {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .append("streetNumber", streetNumber)
-                .append("barangay", barangay)
-                .append("city", city)
-                .append("zipCode", zipCode)
-                .toString();
+//        return new ToStringBuilder(this)
+//                .append("streetNumber", streetNumber)
+//                .append("barangay", barangay)
+//                .append("city", city)
+//                .append("zipCode", zipCode)
+//                .toString();
+
+        return (StringUtils.isBlank(streetNumber) ? "" : streetNumber + " ")
+                + (StringUtils.isBlank(barangay) ? "" : barangay + ", ")
+                + (StringUtils.isBlank(city) ? "" : city + ", ")
+                + (StringUtils.isBlank(zipCode) ? "" : zipCode + " ");
     }
 
 }

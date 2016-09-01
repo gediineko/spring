@@ -30,6 +30,16 @@
                 </p>
             </a>
         </div>
+
+        <div class="col-md-4">
+            <a href="/admin/list" class="btn btn-primary btn-block main-links">
+                <i class="fa fa-5x fa-user"></i>
+                <br>
+                <p class="h2">
+                    <spring:message code="common.adminManagement" text="Admin Management"/>
+                </p>
+            </a>
+        </div>
     </div>
 
     <!--

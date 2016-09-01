@@ -26,6 +26,12 @@ public class AdminController {
         return "admin/dashboard";
     }
 
+    @RequestMapping("/list")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String getAdmin(){
+        return "admin/list";
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public String test(@RequestParam("file") MultipartFile file) throws InvalidFileTypeException, IOException {
         if(!file.getContentType().equals("text/csv")){

@@ -11,5 +11,5 @@ public interface RoleService {
     Set<RoleDto> getAll();
     RoleDto create();
     RoleDto update();
-    void delete();
+    void delete(Long roleId);
 }

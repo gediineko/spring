@@ -146,8 +146,7 @@
                         <button class="btn btn-primary pull-right <c:if test="${hidden}">hidden</c:if>"
                                 data-toggle="modal"
                                 data-target="#contactModal">
-                                ${addCon                <span class="caret"></span>
-tactLbl}
+                                ${addContactLbl}
                         </button>
                     </h3>
                 </div>

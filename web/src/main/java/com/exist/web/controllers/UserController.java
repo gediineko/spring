@@ -39,6 +39,13 @@ public class UserController {
         return "role/list";
     }
 
+    @RequestMapping(path = "/role/delete")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String deleteRole(@RequestParam Long roleId){
+        roleService.delete(roleId);
+        return "role/list";
+    }
+
     @RequestMapping(path = "/profile/{userId}")
     @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userId)")
     public String profile(@PathVariable Long userId, Model model) throws EntityDoesNotExistException {
