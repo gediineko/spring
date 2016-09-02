@@ -9,22 +9,23 @@
                 <spring:message code="admin.list.label" text="Administrator List"/>
             </h1>
         </div>
+        <br>
         <div class="row">
-            <button class="btn btn-default pull-right">
+            <button class="btn btn-default pull-right" data-toggle="modal" data-target="#adminModal">
                 <spring:message code="admin.list.addAdmin" text="Add Admin"/>
             </button>
         </div>
+        <br>
         <div class="row">
-            <table class="table table-condensed">
+            <table class="table table-condensed table-bordered">
                 <thead>
                     <tr>
-                        <th>Username</th>
+                        <th colspan="3">Username</th>
                         <th>
                             <spring:message code="common.actions" text="Actions"/>
                         </th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <c:if test="${adminList.isEmpty()}">
                         <tr>
@@ -33,17 +34,15 @@
                     </c:if>
                     <c:forEach var="admin" items="${adminList}">
                         <tr>
-                            <td>${admin.username}</td>
-                        </tr>
-                        <tr>
+                            <td colspan="3">${admin.username}</td>
                             <td>
-                                <span class="dropdown pull-right">
+                                <span class="dropdown">
                                     <button class="btn btn-default dropdown-toggle" type="button"
                                             id="dropDownMenuAdmin${admin.id}"
                                             data-toggle="dropdown"
                                             aria-haspopup="true"
                                             aria-expanded="true">
-                                            <spring:message code="common.actions" text="Actions"/>
+                                        <spring:message code="common.actions" text="Actions"/>
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropDownMenuAdmin${admin.id}">
@@ -61,9 +60,34 @@
                                 </span>
                             </td>
                         </tr>
+
                     </c:forEach>
                 </tbody>
             </table>
+        </div>
+
+        <!-- Admin Modal -->
+        <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalTitle">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="model-header">
+                        <button type="button" class="close" aria-labelledby="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <label for="roleNameInput">
+                            <spring:message code="user.profile.roleLabel" text="Role" var="roleLbl"/>
+                            ${roleLbl}
+                        </label>
+                        <input type="text" class="form-control" id="roleNameInput" placeholder="${roleLbl}" required/>
+                        <span class="dropdown">
+
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </t:main>

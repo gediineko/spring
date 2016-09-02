@@ -27,6 +27,7 @@
                         <spring:message code="user.list.sortByGwaDesc" text="by Gwa: DESC"/>
                     </a>
                 </li>
+                <li role="separator" class="divider"></li>
                 <li>
                     <a href="/user/?sort=dateHired&dir=asc">
                         <spring:message code="user.list.sortByDateHiredAsc" text="by Date Hired: ASC"/>
@@ -37,11 +38,11 @@
                         <spring:message code="user.list.sortByDateHiredDesc" text="by Date Hired: DESC"/>
                     </a>
                 </li>
+                <li role="separator" class="divider"></li>
                 <li>
                     <a href="/user/?sort=lastName&dir=asc">
                         <spring:message code="user.list.sortByLastNameAsc" text="by Last Name: ASC"/>
                     </a>
-                </li>
                 </li>
                 <li>
                     <a href="/user/?sort=lastName&dir=desc">

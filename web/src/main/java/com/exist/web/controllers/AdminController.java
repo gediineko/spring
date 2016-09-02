@@ -2,6 +2,7 @@ package com.exist.web.controllers;
 
 import com.exist.model.dto.UserAccountDto;
 import com.exist.model.exception.InvalidFileTypeException;
+import com.exist.model.ref.RoleType;
 import com.exist.services.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -32,7 +34,11 @@ public class AdminController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public String getAdmin(Model model){
         List<UserAccountDto> adminList = userAccountService.getAll();
+        List<RoleType> roleTypeList = new ArrayList<>();
+        roleTypeList.add(RoleType.ADMIN);
+        roleTypeList.add(RoleType.USER);
         model.addAttribute("adminList", adminList);
+        model.addAttribute("roleTypeList", roleTypeList);
         return "admin/list";
     }
 
