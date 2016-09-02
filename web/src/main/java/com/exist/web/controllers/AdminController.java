@@ -1,16 +1,19 @@
 package com.exist.web.controllers;
 
+import com.exist.model.dto.UserAccountDto;
 import com.exist.model.exception.InvalidFileTypeException;
 import com.exist.services.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -27,7 +30,9 @@ public class AdminController {
 
     @RequestMapping("/list")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String getAdmin(){
+    public String getAdmin(Model model){
+        List<UserAccountDto> adminList = userAccountService.getAll();
+        model.addAttribute("adminList", adminList);
         return "admin/list";
     }
 

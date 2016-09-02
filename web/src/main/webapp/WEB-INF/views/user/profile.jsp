@@ -9,9 +9,12 @@
 
         <div class="text-center">
             <h1>
-                <spring:message code="profile.header" text="My Profile"/>
+                <spring:message code="profile.header" text="Personal Information"/>
             </h1>
+        </div>
 
+
+        <div class="text-center">
             <c:if test="${readonly == true}">
                 <div>
                     <a href="/user/update/${userProfile.id}">

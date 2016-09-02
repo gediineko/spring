@@ -49,11 +49,11 @@ public class UserController {
         return "user/profile";
     }
 
-    @RequestMapping(path="/create"/*, method = RequestMethod.POST*/ )
+    @RequestMapping(path="/create", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
     public String create(@ModelAttribute UserProfileDto userProfile) throws EntityAlreadyExistsException {
         userProfileService.create(userProfile);
-        return "redirect:/user/create";
+        return "redirect:/user";
     }
 
     @RequestMapping(path = "/update/{userId}", method = RequestMethod.GET)
