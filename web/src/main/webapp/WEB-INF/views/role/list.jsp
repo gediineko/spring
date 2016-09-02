@@ -12,7 +12,8 @@
         <br><br>
 
         <div class="row">
-            <button class="btn btn-primary pull-right">
+            <button class="btn btn-default pull-right" href="#" data-toggle="modal"
+                data-target="#roleModal">
                 <spring:message code="user.profile.addRole" text="Add Role"/>
             </button>
         </div>
@@ -58,7 +59,10 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropDownMenuRole${role.id}">
                                             <li>
+                                                <button class="btn btn-link" href="#" data-toggle="modal"
+                                                    data-target="#roleModal${role.id}">
                                                 <spring:message code="common.update" text="Update"/>
+                                                    </button>
                                             </li>
                                             <li>
                                                 <form:form action="/user/role/delete" method="delete">
@@ -72,9 +76,11 @@
                                 </span>
                         </td>
                     </tr>
+                    <t:roleModal mode="Update" role="${role}"/>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
     </div>
+    <t:roleModal mode="Create"/>
 </t:main>

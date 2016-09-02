@@ -30,8 +30,6 @@ public class UserController {
         return "user/list";
     }
 
-
-
     @RequestMapping(path = "/role/delete")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteRole(@RequestParam Long roleId) throws EntityAlreadyExistsException {
