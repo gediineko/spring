@@ -24,13 +24,8 @@
 
         <div class="row">
             <div class="col-md-6">
-                <form:label path="username">Username</form:label>
-                <form:input path="username" cssClass="form-control" readonly="true"/>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-6">
+
                 <h3><spring:message code="user.profile.name" text="Name"/></h3>
 
                 <div class="form-group">
@@ -142,11 +137,28 @@
                     <form:input path="dateHired" cssClass="form-control" readonly="${readonly}"
                                 placeholder="yyyy-mm-dd"/>
                 </div>
+
+                <div <c:if test="${!hidden}">class="row"</c:if>>
+                    <div class="form-group <c:if test="${!hidden}">col-md-6</c:if>">
+                        <form:label path="username">Username</form:label>
+                        <form:input path="username" cssClass="form-control" readonly="true"/>
+                    </div>
+                    <c:if test="${!hidden}">
+                        <div class="form-group col-md-6">
+                            <form:label path="newPassword">Password</form:label>
+                            <form:input path="newPassword" cssClass="form-control" readonly="${readonly}"
+                                        placeholder="New Password"/>
+                        </div>
+                    </c:if>
+                </div>
             </div>
         </div>
+        <br><br>
         <c:if test="${readonly == false}">
             <div class="row">
-                <button class="btn btn-primary" type="submit">Submit</button>
+                <div class="col-md-2 col-md-offset-5">
+                    <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                </div>
             </div>
         </c:if>
 
