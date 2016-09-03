@@ -33,13 +33,20 @@ public class RoleController {
 
     @RequestMapping(path = "/addUpdateRole", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String add(@ModelAttribute RoleDto roleDto, Model model) throws EntityAlreadyExistsException{
-        model.addAttribute("roleTypeList", RoleType.values());
+    public String add(@ModelAttribute RoleDto roleDto) throws EntityAlreadyExistsException{
         roleService.create(roleDto);
         return "redirect:/role";
     }
 
-    @RequestMapping(path = "/delete/{roleId}", method = RequestMethod.POST)
+
+    @RequestMapping(path = "/addUpdateRole", method = RequestMethod.PUT)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String update(@ModelAttribute RoleDto roleDto) throws EntityAlreadyExistsException {
+        roleService.update(roleDto);
+        return "redirect:/role";
+    }
+
+    @RequestMapping(path = "/delete/{roleId}", method = RequestMethod.DELETE)
     public String delete(@PathVariable Long roleId) throws EntityAlreadyExistsException{
         roleService.delete(roleId);
         return "redirect:/role";

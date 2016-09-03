@@ -65,7 +65,7 @@
                                                     </button>
                                             </li>
                                             <li>
-                                                <form:form action="/user/role/delete" method="delete">
+                                                <form:form action="/role/delete/${role.id}" method="delete">
                                                     <input type="hidden" name="roleId" value="${role.id}">
                                                     <button class="btn btn-link" type="submit">
                                                         <spring:message code="common.delete" text="Delete"/>

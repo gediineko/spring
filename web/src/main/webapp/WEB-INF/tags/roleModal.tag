@@ -10,33 +10,41 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="roleModalTitle${role.id}">${mode} Role</h4>
+                <c:if test="${mode.equals('Create')}">
+                    <spring:message code="roleModal.mode.create" text="Create " var="modeLabel"/>
+                </c:if>
+                <c:if   test="${mode.equals('Update')}">
+                    <spring:message code="roleModal.mode.update" text="Update " var="modeLabel"/>
+                </c:if>
+                <h4 class="modal-title" id="roleModalTitle${role.id}">
+                        ${modeLabel} <spring:message code="roleModal.role" text="Role"/>
+                </h4>
             </div>
             <div class="modal-body">
                 <form class="form" action="/role/addUpdateRole" method="post" id="roleForm${role.id}">
                     <input type="hidden" name="_method" value="${mode.equals('Create') ? 'POST' : 'PUT'}">
-                    <input type="hidden" name="roleId" value='${role.id}'>
+                    <input type="hidden" name="id" value='${role.id}'>
 
                     <div class="form-group">
-                        <label for="roleType">
+                        <label class="req" for="roleType">
                             <spring:message code="roleModal.roleType" text="Role Type"/>
                         </label>
-                        <select name="roleType" id="roleType" class="form-control">
+                        <select name="roleType" id="roleType" class="form-control" required>
                             <option value="">
                                 <spring:message code="roleModal.selectOne" text="Select one"/>
                             </option>
                             <c:forEach var="roleType" items="${roleTypeList}">
-                                <option value="${roleType}">${roleType.desc}</option>
+                                <option value="${roleType}" ${roleType == role.roleType ? 'selected' : ''}>${roleType.desc}</option>
                             </c:forEach>
                         </select>
                     </div>
 
-                    <label for="roleName">
+                    <label class="req" for="roleName">
                         <spring:message code="roleModal.roleName" text="Role Name" var="roleNameLbl"/>
                         ${roleNameLbl}
                     </label>
                     <input id="roleName" name="name" type="text" class="form-control" placeholder="${roleNameLbl}"
-                           value="${role.name}">
+                           value="${role.name}" required>
 
                 </form>
             </div>
