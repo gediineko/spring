@@ -3,26 +3,54 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <t:main title="Home">
+    <div class="text-center">
+        <h1>
+            <spring:message code="profile.header" text="Personal Information"/>
+        </h1>
+    </div>
+
+
+    <div class="text-center">
+        <c:if test="${readonly == true}">
+            <div>
+                <a href="/user/update/${userProfile.id}">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <spring:message code="common.update" text="Update"/>
+                </a>
+                |
+                <a href="/user/update/contactRole/${userProfile.id}">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <spring:message code="common.updateContact" text="Update Contact"/>
+                </a>
+                |
+                <a href="/user/updateFile/${userProfile.id}">
+                    <i class="fa fa-pencil-square-o"></i>
+                    Download Update Form
+                </a>
+                |
+                <form action="/user/uploadFile/${userProfile.id}" id="uploadForm" method="post" enctype="multipart/form-data">
+                    <a>
+                        <label for="file"><i class="fa fa-pencil-square-o"></i> Upload Update Form</label>
+                    </a>
+                    <input id="file" type="file" name="file" onchange="this.form.submit()" class="hidden">
+                </form>
+            </div>
+        </c:if>
+    </div>
     <form:form action="/user" method="${createMode ? 'POST' : 'PUT'}" modelAttribute="userProfile">
         <form:hidden path="id"/>
-
-        <div class="text-center">
-            <h1>
-                <spring:message code="profile.header" text="Personal Information"/>
-            </h1>
-        </div>
-
-
-        <div class="text-center">
-            <c:if test="${readonly == true}">
-                <div>
-                    <a href="/user/update/${userProfile.id}">
-                        <spring:message code="common.update" text="Update"/>
-                        <i class="fa fa-pencil-square-o"></i>
-                    </a>
-                </div>
-            </c:if>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <form:label path="username">Username</form:label>
+                <form:input path="username" cssClass="form-control" placeholder="Username" readonly="${!createMode}"/>
+            </div>
+            <div class="form-group col-md-6">
+                <form:label path="newPassword">Password</form:label>
+                <form:input path="newPassword" cssClass="form-control" readonly="${!createMode and readonly}"
+                            placeholder="Password" type="password"/>
+            </div>
         </div>
 
         <div class="row">
@@ -70,7 +98,7 @@
                     <spring:message code="user.profile.birthDate" text="Birth Date" var="birthDateLbl"/>
                     <h3 class="req">${birthDateLbl}</h3>
                     <form:input path="birthDate" cssClass="form-control" readonly="${readonly}"
-                                placeholder="yyyy-mm-dd" required="required"/>
+                                placeholder="yyyy-mm-dd" required="required" type="date"/>
                 </div>
             </div>
 
@@ -138,21 +166,7 @@
                     <spring:message code="user.profile.dateHired" text="Date Hired" var="dateHiredLbl"/>
                     <label>${dateHiredLbl}</label>
                     <form:input path="dateHired" cssClass="form-control" readonly="${readonly}"
-                                placeholder="yyyy-mm-dd"/>
-                </div>
-
-                <div <c:if test="${!hidden}">class="row"</c:if>>
-                    <div class="form-group <c:if test="${!hidden}">col-md-6</c:if>">
-                        <form:label path="username">Username</form:label>
-                        <form:input path="username" cssClass="form-control" readonly="true"/>
-                    </div>
-                    <c:if test="${!hidden}">
-                        <div class="form-group col-md-6">
-                            <form:label path="newPassword">Password</form:label>
-                            <form:input path="newPassword" cssClass="form-control" readonly="${readonly}"
-                                        placeholder="New Password"/>
-                        </div>
-                    </c:if>
+                                placeholder="yyyy-mm-dd" type="date"/>
                 </div>
             </div>
         </div>
@@ -247,12 +261,14 @@
                 <div>
                     <h3>
                         <spring:message code="user.profile.roleLabel" text="Role"/>
-                        <spring:message code="user.profile.addRole" text="Add Role" var="addRoleLbl"/>
-                        <button class="btn btn-primary pull-right <c:if test="${hidden}">hidden</c:if>"
-                                data-toggle="modal"
-                                data-target="#roleModal">
-                                ${addRoleLbl}
-                        </button>
+                        <sec:authorize access="hasAuthority('ADMIN')">
+                            <spring:message code="user.profile.addRole" text="Add Role" var="addRoleLbl"/>
+                            <button class="btn btn-primary pull-right ${hidden ? 'hidden' : ''}"
+                                    data-toggle="modal"
+                                    data-target="#roleModal">
+                                    ${addRoleLbl}
+                            </button>
+                        </sec:authorize>
                     </h3>
                 </div>
                 <br>
@@ -262,9 +278,11 @@
                         <thead>
                         <tr>
                             <th><spring:message code="user.profile.roleLabel" text="Role Title"/></th>
+                            <sec:authorize access="hasAuthority('ADMIN')">
                             <th class="thAction <c:if test="${hidden}">hidden</c:if>">
                                 <spring:message code="common.actions" text="Actions"/>
                             </th>
+                            </sec:authorize>
                         </tr>
                         </thead>
 
@@ -279,6 +297,7 @@
                         <c:forEach var="role" items="${userProfile.roles}">
                             <tr>
                                 <td>${role.name}</td>
+                                <sec:authorize access="hasAuthority('ADMIN')">
                                 <td class="tdActions <c:if test="${hidden}">hidden</c:if>">
                                     <span class="dropdown pull-right">
                                         <button class="btn btn-default dropdown-toggle" type="button"
@@ -301,6 +320,7 @@
                                         </ul>
                                     </span>
                                 </td>
+                                </sec:authorize>
                             </tr>
                         </c:forEach>
                         </tbody>

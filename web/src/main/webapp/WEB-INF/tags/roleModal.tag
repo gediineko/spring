@@ -22,8 +22,8 @@
             </div>
             <div class="modal-body">
                 <form class="form" action="/role/addUpdateRole" method="post" id="roleForm${role.id}">
-                    <input type="hidden" name="_method" value="${mode.equals('Create') ? 'POST' : 'PUT'}">
-                    <input type="hidden" name="id" value='${role.id}'>
+                    <input type="hidden" name="_method" value="${mode.equals('Create') ? 'POST' : 'PUT'}"/>
+                    <input type="hidden" name="id" value='${role.id}'/>
 
                     <div class="form-group">
                         <label class="req" for="roleType">
@@ -44,7 +44,7 @@
                         ${roleNameLbl}
                     </label>
                     <input id="roleName" name="name" type="text" class="form-control" placeholder="${roleNameLbl}"
-                           value="${role.name}" required>
+                           value="${role.name}" required/>
 
                 </form>
             </div>

@@ -65,9 +65,16 @@
                 </li>
                 <li role="separator" class="divider"></li>
                 <li>
-                    <form action="/admin/user/upload" method="post" enctype="multipart/form-data">
-                        <input type="file" name="file" onchange="this.form.submit()" class="form-control">
+                    <a>
+                        <label for="file">Upload Users</label>
+                    </a>
+                    <form class="hidden" action="/admin/user/upload" id="uploadForm" method="post" enctype="multipart/form-data">
+
+                        <input id="file" type="file" name="file" onchange="this.form.submit()" class="form-control">
                     </form>
+                </li>
+                <li>
+                    <a href="/template/template.csv" download>Download Template</a>
                 </li>
 
             </ul>
@@ -150,10 +157,14 @@
                                 <li><a href="/user/update/contactRole/${user.id}">Edit Contacts & Roles</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li>
-                                    <form action="/user/delete" method="post"
-                                          id="deleteForm${role.id}">
-                                        <input type="hidden" name="personId" value="${user.id}">
-                                        <button class="btn btn-link" type="submit">Delete</button>
+                                    <form action="/user" method="post"
+                                          id="deleteForm${user.id}">
+                                        <input type="hidden" name="_method"
+                                               value="delete">
+                                        <input type="hidden" name="userId" value="${user.id}">
+                                        <button class="btn btn-link" type="submit">
+                                            <spring:message code="common.delete" text="Delete"/>
+                                        </button>
                                     </form>
                                 </li>
                             </ul>

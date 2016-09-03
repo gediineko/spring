@@ -1,5 +1,6 @@
 package com.exist.services;
 
+import com.exist.model.dto.CSVRowDto;
 import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
 import com.exist.model.exception.EntityAlreadyExistsException;
@@ -27,4 +28,8 @@ public interface UserProfileService {
     void updateContact(ContactDto contactDto);
 
     void delete(Long userId);
+
+    CSVRowDto getUpdateFormData(Long userId) throws EntityDoesNotExistException;
+
+    UserProfileDto uploadForm(CSVRowDto csvRowDto) throws EntityAlreadyExistsException;
 }

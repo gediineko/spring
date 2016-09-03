@@ -3,6 +3,7 @@ package com.exist.model.dto;
 import com.exist.model.base.BaseDto;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,7 +16,8 @@ public class UserAccountDto extends BaseDto {
     private Boolean accountNonLocked = true;
     private Boolean credentialsNonExpired = true;
     private Boolean enabled = true;
-    private Set<RoleDto> roles;
+    private Long initialRole;
+    private Set<RoleDto> roles = new HashSet<>();
 
     public String getUsername() {
         return username;
@@ -71,6 +73,14 @@ public class UserAccountDto extends BaseDto {
 
     public void setRoles(Set<RoleDto> roles) {
         this.roles = roles;
+    }
+
+    public Long getInitialRole() {
+        return initialRole;
+    }
+
+    public void setInitialRole(Long initialRole) {
+        this.initialRole = initialRole;
     }
 
     @Override

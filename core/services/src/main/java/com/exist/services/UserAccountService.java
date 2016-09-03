@@ -19,4 +19,6 @@ public interface UserAccountService extends UserDetailsService {
     UserAccountDto update(UserAccountDto userAccountDto);
 
     void uploadUsers(MultipartFile file) throws IOException;
+
+    void delete(Long userAccountId) throws EntityDoesNotExistException;
 }

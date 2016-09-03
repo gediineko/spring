@@ -1,9 +1,11 @@
 package com.exist.repositories.jpa;
 
 import com.exist.model.entities.Role;
+import com.exist.model.ref.RoleType;
 import com.exist.repositories.base.BaseRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -13,4 +15,6 @@ import java.util.Optional;
 public interface RoleRepository extends BaseRepository<Role, Long> {
 
     Optional<Role> findByName(String name);
+
+    List<Role> findByRoleType(RoleType roleType);
 }

@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-/**
- * Created by jvillanueva on 8/29/16.
- */
 @ControllerAdvice(annotations = Controller.class)
 public class ExceptionAdvice {
 

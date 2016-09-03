@@ -1,5 +1,6 @@
 package com.exist.services.impl;
 
+import com.exist.model.dto.CSVRowDto;
 import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
 import com.exist.model.entities.Contact;
@@ -148,4 +149,18 @@ public class UserProfileServiceImpl implements UserProfileService {
             userProfileRepository.delete(user);
         }
     }
+
+    @Override
+    public CSVRowDto getUpdateFormData(Long userId) throws EntityDoesNotExistException {
+        UserProfileDto userProfileDto = get(userId);
+        return mapper.map(userProfileDto, CSVRowDto.class);
+    }
+
+    @Override
+    public UserProfileDto uploadForm(CSVRowDto csvRowDto) throws EntityAlreadyExistsException {
+        UserProfileDto userProfileDto = mapper.map(csvRowDto, UserProfileDto.class);
+
+        return update(userProfileDto);
+    }
+
 }

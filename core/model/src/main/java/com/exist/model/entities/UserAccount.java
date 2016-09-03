@@ -34,7 +34,7 @@ public class UserAccount extends BaseEntity implements UserDetails {
     @Column
     private Boolean enabled = true;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "JOIN_USER_ACCOUNT_X_ROLE",
             joinColumns = @JoinColumn(name = "USER_ACCOUNT_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))

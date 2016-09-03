@@ -3,9 +3,12 @@ package com.exist.services.impl;
 import com.exist.model.dto.CSVRowDto;
 import com.exist.model.dto.UserAccountDto;
 import com.exist.model.dto.UserProfileDto;
+import com.exist.model.entities.Role;
 import com.exist.model.entities.UserAccount;
 import com.exist.model.exception.EntityAlreadyExistsException;
+import com.exist.model.exception.EntityDoesNotExistException;
 import com.exist.model.ref.RoleType;
+import com.exist.repositories.jpa.RoleRepository;
 import com.exist.repositories.jpa.UserAccountRepository;
 import com.exist.services.UserAccountService;
 import com.exist.services.UserProfileService;
@@ -40,6 +43,9 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Autowired
     private UserProfileService userProfileService;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -79,12 +85,15 @@ public class UserAccountServiceImpl implements UserAccountService {
             throw new IllegalArgumentException("User already exists");
         }
 
+        Role role = roleRepository.getOne(userAccountDto.getInitialRole());
+
         UserAccount newUserAccount = new UserAccount();
         mapper.map(userAccountDto, newUserAccount);
 
         newUserAccount.setId(null);
         newUserAccount.setUsername(userAccountDto.getUsername());
         newUserAccount.setPassword(passwordEncoder.encode(userAccountDto.getNewPassword()));
+        newUserAccount.getRoles().add(role);
 
         return mapper.map(userAccountRepository.save(newUserAccount), UserAccountDto.class);
     }
@@ -130,5 +139,16 @@ public class UserAccountServiceImpl implements UserAccountService {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void delete(Long userAccountId) throws EntityDoesNotExistException {
+        UserAccount userAccount = Optional.ofNullable(userAccountRepository.getOne(userAccountId))
+                .orElseThrow(() -> new EntityDoesNotExistException(
+                        "User with ID Does not exist: " + userAccountId,
+                        "error.user.notExists",
+                        new Object[]{userAccountId}));
+
+        userAccountRepository.delete(userAccount);
     }
 }

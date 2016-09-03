@@ -2,6 +2,7 @@ package com.exist.web.controllers;
 
 import com.exist.model.dto.RoleDto;
 import com.exist.model.exception.EntityAlreadyExistsException;
+import com.exist.model.exception.EntityDoesNotExistException;
 import com.exist.model.ref.RoleType;
 import com.exist.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +42,13 @@ public class RoleController {
 
     @RequestMapping(path = "/addUpdateRole", method = RequestMethod.PUT)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String update(@ModelAttribute RoleDto roleDto) throws EntityAlreadyExistsException {
+    public String update(@ModelAttribute RoleDto roleDto) throws EntityDoesNotExistException {
         roleService.update(roleDto);
         return "redirect:/role";
     }
 
     @RequestMapping(path = "/delete/{roleId}", method = RequestMethod.DELETE)
-    public String delete(@PathVariable Long roleId) throws EntityAlreadyExistsException{
+    public String delete(@PathVariable Long roleId) throws EntityAlreadyExistsException, EntityDoesNotExistException {
         roleService.delete(roleId);
         return "redirect:/role";
     }
