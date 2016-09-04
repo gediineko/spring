@@ -41,7 +41,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Set<RoleDto> getAllByType(RoleType roleType) {
-        return roleRepository.findAll()
+        return roleRepository.findByRoleType(roleType)
                 .stream()
                 .map(r -> mapper.map(r, RoleDto.class))
                 .sorted((r1,r2) -> Long.compare(r1.getId(), r2.getId()))

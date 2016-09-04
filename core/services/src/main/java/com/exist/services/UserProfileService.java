@@ -32,4 +32,8 @@ public interface UserProfileService {
     CSVRowDto getUpdateFormData(Long userId) throws EntityDoesNotExistException;
 
     UserProfileDto uploadForm(CSVRowDto csvRowDto) throws EntityAlreadyExistsException;
+
+    void addRole(Long userProfileId, Long roleId);
+
+    void removeRole(Long userProfileId, Long roleId);
 }

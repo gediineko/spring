@@ -1,5 +1,6 @@
 package com.exist.web.controllers;
 
+import com.exist.model.dto.RoleDto;
 import com.exist.model.dto.UserAccountDto;
 import com.exist.model.exception.EntityAlreadyExistsException;
 import com.exist.model.exception.EntityDoesNotExistException;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -106,5 +108,32 @@ public class AdminController {
         userAccountService.uploadUsers(file);
 
         return "redirect:/user";
+    }
+
+    @RequestMapping(path = "/update/role/{userId}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String updateRole(@PathVariable Long userId, Model model)
+            throws EntityDoesNotExistException {
+        UserAccountDto userAccount = userAccountService.get(userId);
+        Set<RoleDto> roleList = roleService.getAllByType(RoleType.ADMIN);
+        model.addAttribute("roleList", roleList);
+        model.addAttribute("userAccount", userAccount);
+        model.addAttribute("readonly", true);
+        model.addAttribute("hidden", false);
+        return "admin/profile";
+    }
+
+    @RequestMapping(path = "/role/add", method = RequestMethod.PUT)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String addRole(@RequestParam Long userId, @RequestParam Long roleId){
+        userAccountService.addRole(userId, roleId);
+        return "redirect:/admin/profile/" + userId;
+    }
+
+    @RequestMapping(path = "/role/remove", method = RequestMethod.DELETE)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String removeRole(@RequestParam Long userId, @RequestParam Long roleId){
+        userAccountService.removeRole(userId, roleId);
+        return "redirect:/admin/profile/" + userId;
     }
 }

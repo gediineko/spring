@@ -18,8 +18,13 @@
             <c:if test="${readonly == true}">
                 <div>
                     <a href="/admin/update/${userAccount.id}">
-                        <spring:message code="common.update" text="Update"/>
                         <i class="fa fa-pencil-square-o"></i>
+                        <spring:message code="common.updateDetails" text="Update Details"/>
+                    </a>
+                    |
+                    <a href="/admin/update/role/${userAccount.id}">
+                        <i class="fa fa-briefcase"></i>
+                        <spring:message code="common.updateRole" text="Update Roles"/>
                     </a>
                 </div>
             </c:if>
@@ -58,7 +63,7 @@
 
     </form:form>
 
-    <!-- Person Contact -->
+
     <c:if test="${readonly}">
         <div class="row">
 
@@ -111,8 +116,8 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropDownMenuRole${role.id}">
                                             <li>
-                                                <form:form action="/user/profile/role/delete" method="delete">
-                                                <input type="hidden" name="userAccountId" value="${userAccount.id}">
+                                                <form:form action="/admin/role/remove" method="delete">
+                                                <input type="hidden" name="userId" value="${userAccount.id}">
                                                 <input type="hidden" name="roleId" value="${role.id}">
                                                 <button class="btn btn-link" type="submit">
                                                         <spring:message code="common.delete" text="Delete"/>
@@ -131,5 +136,46 @@
 
 
     </c:if>
+
+    <!-- Role Modal -->
+    <div class="modal fade" id="roleModal" tabindex="-1" role="dialog" aria-labelledby="roleModalTitle">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="roleModalTitle">
+                        <spring:message code="roleModal.mode.create" text="Add a"/> Role
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" action="/admin/role/add" method="post" id="addRoleForm">
+                        <input type="hidden" name="_method"
+                               value="put">
+                        <input type="hidden" name="userId" value='${userAccount.id}'>
+                        <div class="form-group">
+                            <label class="control-label" for="role">Role</label>
+                            <select name="roleId" id="role" class="form-control" required>
+                                <option value="">
+                                    <spring:message code="roleModal.selectOne" text="Select One"/>
+                                </option>
+                                <c:forEach var="role" items='${roleList}'>
+                                    <option value="${role.id}">${role.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <spring:message code="common.close" text="Close"/>
+                    </button>
+                    <button type="submit" class="btn btn-primary" form="addRoleForm">
+                        <spring:message code="common.submit" text="Submit"/>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </t:main>

@@ -17,22 +17,22 @@
             <div>
                 <a href="/user/update/${userProfile.id}">
                     <i class="fa fa-pencil-square-o"></i>
-                    <spring:message code="common.update" text="Update"/>
+                    <spring:message code="common.updateDetails" text="Update Details"/>
                 </a>
                 |
                 <a href="/user/update/contactRole/${userProfile.id}">
-                    <i class="fa fa-pencil-square-o"></i>
+                    <i class="fa fa-phone"></i>
                     <spring:message code="common.updateContact" text="Update Contact"/>
                 </a>
                 |
                 <a href="/user/updateFile/${userProfile.id}">
-                    <i class="fa fa-pencil-square-o"></i>
+                    <i class="fa fa-download"></i>
                     Download Update Form
                 </a>
                 |
                 <form action="/user/uploadFile/${userProfile.id}" id="uploadForm" method="post" enctype="multipart/form-data">
                     <a>
-                        <label for="file"><i class="fa fa-pencil-square-o"></i> Upload Update Form</label>
+                        <label for="file"><i class="fa fa-upload"></i> Upload Update Form</label>
                     </a>
                     <input id="file" type="file" name="file" onchange="this.form.submit()" class="hidden">
                 </form>
@@ -310,7 +310,7 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropDownMenuRole${role.id}">
                                             <li>
-                                                <form:form action="/user/profile/role/delete" method="delete">
+                                                <form:form action="/user/role/remove" method="delete">
                                                 <input type="hidden" name="userProfileId" value="${userProfile.id}">
                                                 <input type="hidden" name="roleId" value="${role.id}">
                                                 <button class="btn btn-link" type="submit">
@@ -322,6 +322,7 @@
                                 </td>
                                 </sec:authorize>
                             </tr>
+
                         </c:forEach>
                         </tbody>
                     </table>
@@ -331,6 +332,46 @@
 
 
     </c:if>
+    <!-- Role Modal -->
+    <div class="modal fade" id="roleModal" tabindex="-1" role="dialog" aria-labelledby="roleModalTitle">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="roleModalTitle">
+                        <spring:message code="roleModal.mode.create" text="Add a"/> Role
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" action="/user/addRole" method="post" id="addRoleForm">
+                        <input type="hidden" name="userId" value='${userProfile.id}'>
+                        <div class="form-group">
+                            <label class="control-label" for="role">Role</label>
+                            <select name="role" id="role" class="form-control" required>
+                                <option value="">
+                                    <spring:message code="roleModal.selectOne" text="Select One"/>
+                                </option>
+                                <c:forEach var="role" items='${roleList}'>
+                                    <option value="${role.id}">${role.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <spring:message code="common.close" text="Close"/>
+                    </button>
+                    <button type="submit" class="btn btn-primary" form="addRoleForm">
+                        <spring:message code="common.submit" text="Submit"/>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
     <t:contactModal mode="Create" user="${userProfile}"/>
 
 </t:main>

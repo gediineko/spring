@@ -4,10 +4,12 @@ import com.exist.model.dto.CSVRowDto;
 import com.exist.model.dto.ContactDto;
 import com.exist.model.dto.UserProfileDto;
 import com.exist.model.entities.Contact;
+import com.exist.model.entities.Role;
 import com.exist.model.entities.UserProfile;
 import com.exist.model.exception.EntityAlreadyExistsException;
 import com.exist.model.exception.EntityDoesNotExistException;
 import com.exist.repositories.jpa.ContactRepository;
+import com.exist.repositories.jpa.RoleRepository;
 import com.exist.repositories.jpa.UserProfileRepository;
 import com.exist.services.UserProfileService;
 import org.apache.commons.lang3.StringUtils;
@@ -33,6 +35,9 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Autowired
     private ContactRepository contactRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private Mapper mapper;
@@ -112,6 +117,24 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
+    public void addRole(Long userProfileId, Long roleId) {
+        UserProfile user = userProfileRepository.findOne(userProfileId);
+        Role role = roleRepository.findOne(roleId);
+        if (user != null && role != null){
+            user.getRoles().add(role);
+        }
+    }
+
+    @Override
+    public void removeRole(Long userProfileId, Long roleId) {
+        UserProfile user = userProfileRepository.findOne(userProfileId);
+        Role role = roleRepository.findOne(roleId);
+        if (user != null && role != null){
+            user.getRoles().remove(role);
+        }
+    }
+
+    @Override
     public void addContact(Long userId, ContactDto contactDto) {
         UserProfile user = userProfileRepository.findOne(userId);
         Contact contact = mapper.map(contactDto, Contact.class);
@@ -162,5 +185,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
         return update(userProfileDto);
     }
+
+
 
 }

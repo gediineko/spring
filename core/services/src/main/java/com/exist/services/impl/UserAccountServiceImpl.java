@@ -151,4 +151,22 @@ public class UserAccountServiceImpl implements UserAccountService {
 
         userAccountRepository.delete(userAccount);
     }
+
+    @Override
+    public void addRole(Long userId, Long roleId) {
+        UserAccount user = userAccountRepository.findOne(userId);
+        Role role = roleRepository.findOne(roleId);
+        if (user != null && role != null){
+            user.getRoles().add(role);
+        }
+    }
+
+    @Override
+    public void removeRole(Long userId, Long roleId) {
+        UserAccount user = userAccountRepository.findOne(userId);
+        Role role = roleRepository.findOne(roleId);
+        if (user != null && role != null){
+            user.getRoles().remove(role);
+        }
+    }
 }

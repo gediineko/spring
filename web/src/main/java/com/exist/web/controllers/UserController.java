@@ -2,11 +2,13 @@ package com.exist.web.controllers;
 
 import com.exist.model.dto.CSVRowDto;
 import com.exist.model.dto.ContactDto;
+import com.exist.model.dto.RoleDto;
 import com.exist.model.dto.UserProfileDto;
 import com.exist.model.exception.EntityAlreadyExistsException;
 import com.exist.model.exception.EntityDoesNotExistException;
 import com.exist.model.exception.EntityNotOwnedException;
 import com.exist.model.exception.InvalidFileTypeException;
+import com.exist.model.ref.RoleType;
 import com.exist.services.RoleService;
 import com.exist.services.UserProfileService;
 import com.opencsv.CSVWriter;
@@ -25,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,14 +58,6 @@ public class UserController {
         model.addAttribute("createMode", true);
         return "user/profile";
     }
-
-    @RequestMapping(path = "/role/delete")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public String deleteRole(@RequestParam Long roleId) throws EntityDoesNotExistException {
-        roleService.delete(roleId);
-        return "role/list";
-    }
-
     @RequestMapping(path = "/profile/{userId}")
     @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userId)")
     public String profile(@PathVariable Long userId, Model model) throws EntityDoesNotExistException {
@@ -97,6 +92,8 @@ public class UserController {
     public String updateContactRole(@PathVariable Long userId, Model model)
             throws EntityDoesNotExistException {
         UserProfileDto userProfile = userProfileService.get(userId);
+        Set<RoleDto> roleList = roleService.getAllByType(RoleType.USER);
+        model.addAttribute("roleList", roleList);
         model.addAttribute("userProfile", userProfile);
         model.addAttribute("readonly", true);
         model.addAttribute("hidden", false);
@@ -135,6 +132,20 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and principal.id == #userProfileId)")
     public String updateContact(@RequestParam Long userProfileId, @ModelAttribute ContactDto contactDto) {
         userProfileService.updateContact(contactDto);
+        return "redirect:/user/profile/" + userProfileId;
+    }
+
+    @RequestMapping(path = "/role/add", method = RequestMethod.PUT)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String addRole(@RequestParam Long userProfileId, @RequestParam Long roleId){
+        userProfileService.addRole(userProfileId, roleId);
+        return "redirect:/user/profile/" + userProfileId;
+    }
+
+    @RequestMapping(path = "/role/remove", method = RequestMethod.DELETE)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String removeRole(@RequestParam Long userProfileId, @RequestParam Long roleId){
+        userProfileService.removeRole(userProfileId, roleId);
         return "redirect:/user/profile/" + userProfileId;
     }
 
