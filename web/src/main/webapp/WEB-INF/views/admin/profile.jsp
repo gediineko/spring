@@ -9,7 +9,7 @@
 
         <div class="text-center">
             <h1>
-                <spring:message code="profile.header" text="Personal Information"/>
+                <spring:message code="admin.profile.header" text="Admin Information"/>
             </h1>
         </div>
 

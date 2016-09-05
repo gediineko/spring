@@ -344,11 +344,11 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form" action="/user/addRole" method="post" id="addRoleForm">
+                    <form class="form" action="/user/role/add" method="post" id="addRoleForm">
                         <input type="hidden" name="userId" value='${userProfile.id}'>
                         <div class="form-group">
                             <label class="control-label" for="role">Role</label>
-                            <select name="role" id="role" class="form-control" required>
+                            <select name="roleId" id="role" class="form-control" required>
                                 <option value="">
                                     <spring:message code="roleModal.selectOne" text="Select One"/>
                                 </option>

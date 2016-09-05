@@ -72,6 +72,8 @@ public class DozerConfig {
                         .fields("barangay", "address.barangay")
                         .fields("city", "address.city")
                         .fields("zipCode", "address.zipCode");
+//                        .exclude("id")
+//                        .exclude("username");
             }
         });
     }

@@ -135,11 +135,11 @@ public class UserController {
         return "redirect:/user/profile/" + userProfileId;
     }
 
-    @RequestMapping(path = "/role/add", method = RequestMethod.PUT)
+    @RequestMapping(path = "/role/add", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String addRole(@RequestParam Long userProfileId, @RequestParam Long roleId){
-        userProfileService.addRole(userProfileId, roleId);
-        return "redirect:/user/profile/" + userProfileId;
+    public String addRole(@RequestParam Long userId, @RequestParam Long roleId){
+        userProfileService.addRole(userId, roleId);
+        return "redirect:/user/profile/" + userId;
     }
 
     @RequestMapping(path = "/role/remove", method = RequestMethod.DELETE)
