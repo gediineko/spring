@@ -27,12 +27,14 @@
                 |
                 <a href="/user/updateFile/${userProfile.id}">
                     <i class="fa fa-download"></i>
-                    Download Update Form
+                    <spring:message code="user.profile.downloadUpdate" text="Download Update Form"/>
                 </a>
                 |
                 <form action="/user/uploadFile/${userProfile.id}" id="uploadForm" method="post" enctype="multipart/form-data">
                     <a>
-                        <label for="file"><i class="fa fa-upload"></i> Upload Update Form</label>
+                        <label for="file"><i class="fa fa-upload"></i>
+                            <spring:message code="user.profile.uploadUpdate" text="Upload Update Form"/>
+                        </label>
                     </a>
                     <input id="file" type="file" name="file" onchange="this.form.submit()" class="hidden">
                 </form>
@@ -140,7 +142,7 @@
                 <div class="form-group">
                     <spring:message code="user.profile.gwa" text="GWA" var="gwaLbl"/>
                     <form:label path="gwa">${gwaLbl}</form:label>
-                    <form:input path="gwa" cssClass="form-control" readonly="${readonly}" placeholder="${gwaLbl}"/>
+                    <form:input type="number" path="gwa" cssClass="form-control" readonly="${readonly}" placeholder="${gwaLbl}"/>
                 </div>
 
                 <div class="form-group">

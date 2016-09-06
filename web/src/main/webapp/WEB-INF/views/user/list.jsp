@@ -151,10 +151,16 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu${user.id}">
-                                <li><a href="/user/profile/${user.id}">View Person</a></li>
+                                <li><a href="/user/profile/${user.id}">
+                                    <spring:message code="user.list.viewPerson" text="View Person"/>
+                                </a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/user/update/${user.id}">Edit Person Details</a></li>
-                                <li><a href="/user/update/contactRole/${user.id}">Edit Contacts & Roles</a></li>
+                                <li><a href="/user/update/${user.id}">
+                                    <spring:message code="user.list.editDetails" text="Edit Person Details"/>
+                                </a></li>
+                                <li><a href="/user/update/contactRole/${user.id}">
+                                    <spring:message code="user.list.editContactRoles" text="Edit Contacts & Roles"/>
+                                </a></li>
                                 <li role="separator" class="divider"></li>
                                 <li>
                                     <form action="/user" method="post"
