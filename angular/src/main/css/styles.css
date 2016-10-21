@@ -1,0 +1,45 @@
+/* frameworks & toolkits */
+@import url('./bootstrap.min.css');
+@import url('./font-awesome.min.css');
+
+/* components */
+@import url('components/login.component.css');
+@import url('components/admin-dashboard.component.css');
+
+/*
+===============================================
+Layout
+===============================================
+*/
+
+.container {
+    max-width: 960px;
+}
+
+section {
+    margin: 90px auto 0 auto;
+}
+
+/*
+===============================================
+Navigation
+===============================================
+*/
+
+.main-nav {
+    margin: 0 auto;
+    padding: 0 10%;
+}
+
+/*
+===============================================
+Typography
+===============================================
+*/
+
+.page-title {
+    text-align: center;
+}
+
+
+

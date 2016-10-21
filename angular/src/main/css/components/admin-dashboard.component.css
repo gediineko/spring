@@ -1,0 +1,9 @@
+.admin-dashboard .person-panel a,
+.admin-dashboard .role-panel a,
+.admin-dashboard .admin-panel a {
+    padding: 40px;
+}
+
+.admin-dashboard .row {
+    margin-top: 30px;
+}
