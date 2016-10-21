@@ -20,6 +20,7 @@ var app_component_1 = require('./app.component');
 var login_component_1 = require('./login/login.component');
 var person_list_component_1 = require('./person/person-list.component');
 var role_list_component_1 = require('./role/role-list.component');
+var person_form_component_1 = require("./person/person-form.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -38,6 +39,7 @@ var AppModule = (function () {
                 admin_form_component_1.AdminFormComponent,
                 admin_list_component_1.AdminListComponent,
                 person_list_component_1.PersonListComponent,
+                person_form_component_1.PersonFormComponent,
                 role_list_component_1.RoleListComponent
             ],
             providers: [],

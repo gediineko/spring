@@ -12,6 +12,7 @@
         <module>web</module>
         <module>core</module>
         <module>infra</module>
+        <module>angular</module>
     </modules>
 
     <properties>

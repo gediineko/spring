@@ -2,9 +2,16 @@
 @import url('./bootstrap.min.css');
 @import url('./font-awesome.min.css');
 
+/* fonts */
+@import url('https://fonts.googleapis.com/css?family=Arvo|Cinzel');
+
 /* components */
 @import url('components/login.component.css');
 @import url('components/admin-dashboard.component.css');
+@import url('components/admin-list.component.css');
+@import url('components/person-form.component.css');
+@import url('components/person-list.component.css');
+@import url('components/role-list.component.css');
 
 /*
 ===============================================
@@ -16,8 +23,18 @@ Layout
     max-width: 960px;
 }
 
+.rdbtnPanel {
+    padding: 10px;
+}
+
 section {
-    margin: 90px auto 0 auto;
+    margin: 90px auto 120px auto;
+}
+
+.footer {
+    background-color: #000000;
+    margin-top: 15px;
+    padding: 25px;
 }
 
 /*
@@ -37,9 +54,29 @@ Typography
 ===============================================
 */
 
+* {
+    font-family: 'Arvo', serif;
+}
+
+.navbar-brand {
+    font-family: 'Cinzel', serif;
+}
+
 .page-title {
+    font-family: 'Cinzel', serif;
     text-align: center;
 }
+
+/*
+===============================================
+Buttons
+===============================================
+*/
+
+.submit-btn {
+    float: right;
+}
+
 
 
 

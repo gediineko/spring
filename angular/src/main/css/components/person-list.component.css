@@ -1,0 +1,17 @@
+.sortPersonDropdown,
+.addPersonBtn {
+    float: right;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.person-list-menu {
+    width: 100%;
+}
+ .person-list-table {
+     width: 100%;
+ }
+
+ .empty-list {
+     text-align: center;
+ }

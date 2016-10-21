@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PersonListComponent } from './person/person-list.component';
 import { RoleListComponent } from './role/role-list.component';
+import { PersonFormComponent } from "./person/person-form.component";
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import { RoleListComponent } from './role/role-list.component';
         AdminFormComponent,
         AdminListComponent,
         PersonListComponent,
+        PersonFormComponent,
         RoleListComponent
     ],
     providers: [

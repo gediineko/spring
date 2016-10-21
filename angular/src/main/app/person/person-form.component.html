@@ -1,0 +1,117 @@
+<section class="person-form">
+    <h1 class="page-title">
+        Person Details Form
+    </h1>
+
+    <div class="form">
+        <div class="account-group">
+            <h3>Account</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="form-control" name="username" placeholder="Username"/>
+                </div>
+                <div class="col-md-4">
+                    <label for="password">New Password</label>
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Password"/>
+                </div>
+                <div class="col-md-4">
+                    <br/>
+                    *Password must be atleast 8 characters, made up of number and letters.
+                </div>
+            </div>
+        </div>
+
+        <div class="name-group">
+            <h3>Name</h3>
+            <div class="row">
+                <div class="col-md-1 input-grp">
+                    <label for="username">Title</label>
+                    <input type="text" id="title" class="form-control" name="title" placeholder="Title"/>
+                </div>
+                <div class="col-md-4 input-grp">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" class="form-control" name="firstName" placeholder="First Name"/>
+                </div>
+                <div class="col-md-3 input-grp">
+                    <label for="middleName">Middle Name</label>
+                    <input type="text" id="middleName" class="form-control" name="middleName"
+                           placeholder="Middle Name"/>
+                </div>
+                <div class="col-md-3 input-grp">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" class="form-control" name="lastName" placeholder="Last Name"/>
+                </div>
+                <div class="col-md-1 input-grp">
+                    <label for="suffix">Suffix</label>
+                    <input type="text" id="suffix" class="form-control" name="suffix" placeholder="Suffix"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row birthdate-group">
+            <div class="col-md-4">
+                <h3>Birth Date</h3>
+                <input type="date" id="birthdate" class="form-control" name="birtdate" placeholder="mm/dd/yyyy">
+            </div>
+        </div>
+
+        <div class="address-group">
+            <h3>Address</h3>
+            <div class="row">
+                <div class="col-md-4 input-grp">
+                    <label for="street">Street</label>
+                    <input type="text" id="street" class="form-control" name="street" placeholder="Street">
+                </div>
+                <div class="col-md-3 input-grp">
+                    <label for="barangay">Barangay</label>
+                    <input type="text" id="barangay" class="form-control" name="barangay" placeholder="Barangay">
+                </div>
+                <div class="col-md-3 input-grp">
+                    <label for="city">City</label>
+                    <input type="text" id="city" class="form-control" name="city" placeholder="City">
+                </div>
+                <div class="col-md-2 input-grp">
+                    <label for="zipCode">Zip Code</label>
+                    <input type="text" id="zipCode" class="form-control" name="zipCode" placeholder="Zip Code">
+                </div>
+            </div>
+        </div>
+
+        <div class="other-group">
+            <h3>Employment Info</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="gwa">GWA</label>
+                    <input type="number" id="gwa" class="form-control" name="gwa" placeholder="GWA">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Employment Status</label>
+                    <div class="row rdbtnPanel">
+                        <div class="col-md-3">
+                            <label class="radio-inline">
+                                <input type="radio" name="optEmployed"> Yes
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="radio-inline">
+                                <input type="radio" name="optEmployed"> No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="dateHired">Date Hired</label>
+                    <input type="date" id="dateHired" class="form-control" name="dateHired" placeholder="Date Hired">
+                </div>
+            </div>
+        </div>
+        <div class="submit-btn">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-paper-plane"></i> Submit
+            </button>
+        </div>
+    </div>
+</section>

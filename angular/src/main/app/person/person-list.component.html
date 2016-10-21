@@ -1,3 +1,51 @@
-<section>
+<section class="person-list">
     <h1 class="page-title">Person List</h1>
+
+    <div class="row">
+        <div class="person-list-menu">
+            <button class="btn btn-primary addPersonBtn" routerLink="/user/form">
+                Add Person
+            </button>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle sortPersonDropdown" type="button" id="sortPersonDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Sort
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="sortPersonDropdown">
+                    <li><a href="#">by GWA: ASC</a></li>
+                    <li><a href="#">by GWA: DESC</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">by Date Hired: ASC</a></li>
+                    <li><a href="#">by Date Hired: DESC</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">by Last Name: ASC</a></li>
+                    <li><a href="#">by Last Name: DESC</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-condensed person-list-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Birthdate</th>
+                    <th>GWA</th>
+                    <th>Employment Status</th>
+                    <th>Date Hired</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="empty-list" colspan="8">Empty Person List</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>

@@ -15,6 +15,7 @@ var admin_form_component_1 = require("./admin/admin-form.component");
 var admin_list_component_1 = require("./admin/admin-list.component");
 var login_component_1 = require('./login/login.component');
 var person_list_component_1 = require('./person/person-list.component');
+var person_form_component_1 = require("./person/person-form.component");
 var role_list_component_1 = require('./role/role-list.component');
 var routes = [
     {
@@ -36,6 +37,10 @@ var routes = [
     {
         path: 'user',
         component: person_list_component_1.PersonListComponent
+    },
+    {
+        path: 'user/form',
+        component: person_form_component_1.PersonFormComponent
     },
     {
         path: 'role',
