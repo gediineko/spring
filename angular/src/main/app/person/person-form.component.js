@@ -9,16 +9,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require("@angular/router");
+var common_1 = require("@angular/common");
+var person_1 = require("../mock-data-source/person");
+var person_service_1 = require("../services/person.service");
 var PersonFormComponent = (function () {
-    function PersonFormComponent() {
+    function PersonFormComponent(personService, route, location) {
+        this.personService = personService;
+        this.route = route;
+        this.location = location;
     }
+    PersonFormComponent.prototype.goBack = function () {
+        this.location.back();
+    };
+    PersonFormComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.forEach(function (params) {
+            var id = +params['id'];
+            _this.personService.getPerson(id)
+                .then(function (person) { return _this.person = person; });
+        });
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', person_1.Person)
+    ], PersonFormComponent.prototype, "person", void 0);
     PersonFormComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'person-form',
             templateUrl: 'person-form.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [person_service_1.PersonService, router_1.ActivatedRoute, common_1.Location])
     ], PersonFormComponent);
     return PersonFormComponent;
 }());

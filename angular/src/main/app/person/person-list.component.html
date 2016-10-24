@@ -29,22 +29,45 @@
     <div class="row">
         <table class="table table-condensed person-list-table">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Birthdate</th>
-                    <th>GWA</th>
-                    <th>Employment Status</th>
-                    <th>Date Hired</th>
-                    <th>Actions</th>
-                </tr>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Birthdate</th>
+                <th>GWA</th>
+                <th>Employment Status</th>
+                <th>Date Hired</th>
+                <th>Actions</th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="empty-list" colspan="8">Empty Person List</td>
-                </tr>
+            <tr *ngIf="personList === null">
+                <td class="empty-list" colspan="8">Empty Person List</td>
+            </tr>
+            <tr *ngFor="let person of personList">
+                <td>{{person.id}}</td>
+                <td>{{person.username}}</td>
+                <td>{{person.titleName}} {{person.firstName}} {{person.middleName}} {{person.lastName}}
+                    {{person.suffix}}
+                </td>
+                <td>{{person.street}} {{person.barangay}} {{person.city}} {{person.zipCode}}</td>
+                <td>{{person.birthdate}}</td>
+                <td>{{person.gwa}}</td>
+                <td>{{person.currentlyEmployed}}</td>
+                <td>{{person.dateHired}}</td>
+                <td>
+                    <a href="#">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

@@ -12,6 +12,10 @@ import {PersonListComponent} from "./person/person-list.component";
 import {RoleListComponent} from "./role/role-list.component";
 import {PersonFormComponent} from "./person/person-form.component";
 import {RoleFormComponent} from "./role/role-form.component";
+import {PersonService} from "./services/person.service";
+import {RoleService} from "./services/role.service";
+import {InMemoryWebApiModule} from "angular-in-memory-web-api";
+import {InMemoryDataService} from "./services/in-memory-data.service";
 
 @NgModule({
     imports: [
@@ -19,6 +23,7 @@ import {RoleFormComponent} from "./role/role-form.component";
         BrowserModule,
         FormsModule,
         HttpModule,
+        InMemoryWebApiModule.forRoot(InMemoryDataService)
     ],
     declarations: [
         AppComponent,
@@ -31,7 +36,10 @@ import {RoleFormComponent} from "./role/role-form.component";
         RoleFormComponent,
         RoleListComponent
     ],
-    providers: [],
+    providers: [
+        PersonService,
+        RoleService
+    ],
     bootstrap: [
         AppComponent
     ]

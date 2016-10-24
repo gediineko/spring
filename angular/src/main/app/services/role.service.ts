@@ -3,11 +3,11 @@ import {Headers, Http} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import {Person} from '../mock-data-source/person';
+import {Role} from '../mock-data-source/role';
 
 @Injectable()
-export class PersonService {
-    private personUrl = 'app/person.json';
+export class RoleService {
+    private roleUrl = 'app/role.json';
     private headers = new Headers({'Content-Type': 'application/json'});
 
     private handleError(error: any): Promise<any> {
@@ -18,15 +18,10 @@ export class PersonService {
     constructor(private http: Http) {
     }
 
-    getPersonList(): Promise<Person[]> {
-        return this.http.get(this.personUrl)
+    getRoleList(): Promise<Role[]> {
+        return this.http.get(this.roleUrl)
             .toPromise()
-            .then(response => response.json().data as Person[])
+            .then(response => response.json().data as Role[])
             .catch(this.handleError);
-    }
-
-    getPerson(id: number): Promise<Person> {
-        return this.getPersonList()
-            .then(person => person.find(person => person.id === id));
     }
 }

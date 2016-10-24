@@ -8,17 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var person_service_1 = require("../services/person.service");
 var PersonListComponent = (function () {
-    function PersonListComponent() {
+    function PersonListComponent(personService, router) {
+        this.personService = personService;
+        this.router = router;
     }
+    PersonListComponent.prototype.ngOnInit = function () {
+        this.getPersonList();
+    };
+    PersonListComponent.prototype.getPersonList = function () {
+        var _this = this;
+        this.personService.getPersonList()
+            .then(function (personList) { return _this.personList = personList; });
+    };
     PersonListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'person-list',
             templateUrl: 'person-list.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [person_service_1.PersonService, router_1.Router])
     ], PersonListComponent);
     return PersonListComponent;
 }());

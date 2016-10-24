@@ -11,13 +11,27 @@
         <table class="table table-bordered admin-list-table">
             <thead>
             <tr>
-                <th>Username</th>
+                <th>Admin Name</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr *ngIf="adminList === null">
                 <td class="empty-list" colspan="2">Empty Admin List</td>
+            </tr>
+            <tr *ngFor="let admin of adminList">
+                <td>{{admin.roleName}}</td>
+                <td>
+                    <a href="#">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>

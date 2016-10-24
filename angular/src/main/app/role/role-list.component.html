@@ -17,8 +17,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngIf="roleList === null">
                     <td class="empty-list" colspan="3">Empty Role List</td>
+                </tr>
+                <tr *ngFor="let role of roleList">
+                    <td>{{role.id}}</td>
+                    <td>{{role.roleName}}</td>
+                    <td>
+                        <a href="#">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>

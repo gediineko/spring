@@ -8,10 +8,11 @@
 .person-list-menu {
     width: 100%;
 }
- .person-list-table {
-     width: 100%;
- }
 
- .empty-list {
-     text-align: center;
- }
+.person-list-table {
+    width: 100%;
+}
+
+.empty-list {
+    text-align: center;
+}

@@ -22,6 +22,10 @@ var person_list_component_1 = require("./person/person-list.component");
 var role_list_component_1 = require("./role/role-list.component");
 var person_form_component_1 = require("./person/person-form.component");
 var role_form_component_1 = require("./role/role-form.component");
+var person_service_1 = require("./services/person.service");
+var role_service_1 = require("./services/role.service");
+var angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
+var in_memory_data_service_1 = require("./services/in-memory-data.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,6 +36,7 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
+                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService)
             ],
             declarations: [
                 app_component_1.AppComponent,
@@ -44,7 +49,10 @@ var AppModule = (function () {
                 role_form_component_1.RoleFormComponent,
                 role_list_component_1.RoleListComponent
             ],
-            providers: [],
+            providers: [
+                person_service_1.PersonService,
+                role_service_1.RoleService
+            ],
             bootstrap: [
                 app_component_1.AppComponent
             ]
