@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { PersonListComponent } from './person/person-list.component';
 import { PersonFormComponent } from "./person/person-form.component";
 import { RoleListComponent } from './role/role-list.component';
+import { RoleFormComponent } from "./role/role-form.component";
 
 const routes:  Routes = [
     {
@@ -23,7 +24,7 @@ const routes:  Routes = [
         component: AdminListComponent
     },
     {
-        path: 'admin/add',
+        path: 'admin/form',
         component: AdminFormComponent
     },
     {
@@ -37,7 +38,12 @@ const routes:  Routes = [
     {
         path: 'role',
         component: RoleListComponent
+    },
+    {
+        path: 'role/form',
+        component: RoleFormComponent
     }
+
 ];
 
 @NgModule({

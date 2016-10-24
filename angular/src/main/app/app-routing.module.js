@@ -17,6 +17,7 @@ var login_component_1 = require('./login/login.component');
 var person_list_component_1 = require('./person/person-list.component');
 var person_form_component_1 = require("./person/person-form.component");
 var role_list_component_1 = require('./role/role-list.component');
+var role_form_component_1 = require("./role/role-form.component");
 var routes = [
     {
         path: '',
@@ -31,7 +32,7 @@ var routes = [
         component: admin_list_component_1.AdminListComponent
     },
     {
-        path: 'admin/add',
+        path: 'admin/form',
         component: admin_form_component_1.AdminFormComponent
     },
     {
@@ -45,6 +46,10 @@ var routes = [
     {
         path: 'role',
         component: role_list_component_1.RoleListComponent
+    },
+    {
+        path: 'role/form',
+        component: role_form_component_1.RoleFormComponent
     }
 ];
 var AppRoutingModule = (function () {

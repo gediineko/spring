@@ -8,10 +8,12 @@
 /* components */
 @import url('components/login.component.css');
 @import url('components/admin-dashboard.component.css');
+@import url('components/admin-form.component.css');
 @import url('components/admin-list.component.css');
 @import url('components/person-form.component.css');
 @import url('components/person-list.component.css');
 @import url('components/role-list.component.css');
+@import url('components/role-form.component.css');
 
 /*
 ===============================================
