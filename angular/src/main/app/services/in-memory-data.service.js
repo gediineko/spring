@@ -26,7 +26,7 @@ var InMemoryDataService = (function () {
                 username: 'scwagtails',
                 titleName: 'Mr.',
                 firstName: 'Snow',
-                middleName: 'Claws',
+                middleName: '',
                 lastName: 'Wagtails',
                 suffix: 'III',
                 birthdate: '01/01/1996',

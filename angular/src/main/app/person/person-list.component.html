@@ -6,23 +6,23 @@
             <button class="btn btn-primary addPersonBtn" routerLink="/user/form">
                 Add Person
             </button>
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle sortPersonDropdown" type="button" id="sortPersonDropdown"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Sort
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="sortPersonDropdown">
-                    <li><a href="#">by GWA: ASC</a></li>
-                    <li><a href="#">by GWA: DESC</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">by Date Hired: ASC</a></li>
-                    <li><a href="#">by Date Hired: DESC</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">by Last Name: ASC</a></li>
-                    <li><a href="#">by Last Name: DESC</a></li>
-                </ul>
-            </div>
+            <!--<div class="dropdown">-->
+                <!--<button class="btn btn-default dropdown-toggle sortPersonDropdown" type="button" id="sortPersonDropdown"-->
+                        <!--data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+                    <!--Sort-->
+                    <!--<span class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" aria-labelledby="sortPersonDropdown">-->
+                    <!--<li><a href="#">by GWA: ASC</a></li>-->
+                    <!--<li><a href="#">by GWA: DESC</a></li>-->
+                    <!--<li role="separator" class="divider"></li>-->
+                    <!--<li><a href="#">by Date Hired: ASC</a></li>-->
+                    <!--<li><a href="#">by Date Hired: DESC</a></li>-->
+                    <!--<li role="separator" class="divider"></li>-->
+                    <!--<li><a href="#">by Last Name: ASC</a></li>-->
+                    <!--<li><a href="#">by Last Name: DESC</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
         </div>
     </div>
 
@@ -34,15 +34,14 @@
                 <th>Username</th>
                 <th>Name</th>
                 <th>Address</th>
-                <th>Birthdate</th>
                 <th>GWA</th>
-                <th>Employment Status</th>
+                <th>Status</th>
                 <th>Date Hired</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngIf="personList === null">
+            <tr *ngIf="!personList">
                 <td class="empty-list" colspan="8">Empty Person List</td>
             </tr>
             <tr *ngFor="let person of personList">
@@ -52,7 +51,6 @@
                     {{person.suffix}}
                 </td>
                 <td>{{person.street}}, {{person.barangay}}, {{person.city}}, {{person.zipCode}}</td>
-                <td>{{person.birthdate}}</td>
                 <td>{{person.gwa}}</td>
                 <td>{{person.currentlyEmployed}}</td>
                 <td>{{person.dateHired}}</td>
