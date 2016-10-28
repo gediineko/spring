@@ -46,7 +46,7 @@ var routes = [
         component: person_form_component_1.PersonFormComponent
     },
     {
-        path: 'user/:id',
+        path: 'user/view/:id',
         component: person_view_form_component_1.PersonViewFormComponent
     },
     {

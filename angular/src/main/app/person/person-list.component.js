@@ -25,10 +25,20 @@ var PersonListComponent = (function () {
             .then(function (personList) { return _this.personList = personList; });
     };
     PersonListComponent.prototype.gotoView = function () {
-        this.router.navigate(['/user', this.selectedPerson.id]);
+        this.router.navigate(['/user/view', this.selectedPerson.id]);
     };
     PersonListComponent.prototype.onSelect = function (person) {
         this.selectedPerson = person;
+    };
+    PersonListComponent.prototype.delete = function (person) {
+        var _this = this;
+        this.personService.deletePerson(person.id)
+            .then(function () {
+            _this.personList = _this.personList.filter(function (p) { return p !== person; });
+            if (_this.selectedPerson === person) {
+                _this.selectedPerson = null;
+            }
+        });
     };
     PersonListComponent = __decorate([
         core_1.Component({

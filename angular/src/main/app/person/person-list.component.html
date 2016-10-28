@@ -7,21 +7,21 @@
                 Add Person
             </button>
             <!--<div class="dropdown">-->
-                <!--<button class="btn btn-default dropdown-toggle sortPersonDropdown" type="button" id="sortPersonDropdown"-->
-                        <!--data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
-                    <!--Sort-->
-                    <!--<span class="caret"></span>-->
-                <!--</button>-->
-                <!--<ul class="dropdown-menu" aria-labelledby="sortPersonDropdown">-->
-                    <!--<li><a href="#">by GWA: ASC</a></li>-->
-                    <!--<li><a href="#">by GWA: DESC</a></li>-->
-                    <!--<li role="separator" class="divider"></li>-->
-                    <!--<li><a href="#">by Date Hired: ASC</a></li>-->
-                    <!--<li><a href="#">by Date Hired: DESC</a></li>-->
-                    <!--<li role="separator" class="divider"></li>-->
-                    <!--<li><a href="#">by Last Name: ASC</a></li>-->
-                    <!--<li><a href="#">by Last Name: DESC</a></li>-->
-                <!--</ul>-->
+            <!--<button class="btn btn-default dropdown-toggle sortPersonDropdown" type="button" id="sortPersonDropdown"-->
+            <!--data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+            <!--Sort-->
+            <!--<span class="caret"></span>-->
+            <!--</button>-->
+            <!--<ul class="dropdown-menu" aria-labelledby="sortPersonDropdown">-->
+            <!--<li><a href="#">by GWA: ASC</a></li>-->
+            <!--<li><a href="#">by GWA: DESC</a></li>-->
+            <!--<li role="separator" class="divider"></li>-->
+            <!--<li><a href="#">by Date Hired: ASC</a></li>-->
+            <!--<li><a href="#">by Date Hired: DESC</a></li>-->
+            <!--<li role="separator" class="divider"></li>-->
+            <!--<li><a href="#">by Last Name: ASC</a></li>-->
+            <!--<li><a href="#">by Last Name: DESC</a></li>-->
+            <!--</ul>-->
             <!--</div>-->
         </div>
     </div>
@@ -55,10 +55,17 @@
                 <td *ngIf="person.currentlyEmployed === false">Unemployed</td>
                 <!--<td>{{person.currentlyEmployed}}</td>-->
                 <td>
-                    <button class="btn btn-default" [class.selected]="person === selectedPerson"
-                            (click)="onSelect(person); gotoView()">
-                        <i class="fa fa-eye"></i>
-                    </button>
+                    <div class="row">
+                        <button class="btn btn-default" [class.selected]="person === selectedPerson"
+                                (click)="onSelect(person); gotoView()">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <button class="btn btn-default"
+                                (click)="delete(person); $event.stopPropagation()">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </div>
+
                 </td>
             </tr>
             </tbody>

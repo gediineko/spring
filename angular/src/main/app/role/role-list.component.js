@@ -30,6 +30,16 @@ var RoleListComponent = (function () {
     RoleListComponent.prototype.onSelect = function (role) {
         this.selectedRole = role;
     };
+    RoleListComponent.prototype.delete = function (role) {
+        var _this = this;
+        this.roleService.deleteRole(role.id)
+            .then(function () {
+            _this.roleList = _this.roleList.filter(function (r) { return r !== role; });
+            if (_this.selectedRole === role) {
+                _this.selectedRole = null;
+            }
+        });
+    };
     RoleListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

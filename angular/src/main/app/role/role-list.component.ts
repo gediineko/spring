@@ -33,4 +33,14 @@ export class RoleListComponent implements OnInit {
     onSelect(role: Role): void {
         this.selectedRole = role;
     }
+
+    delete(role: Role): void {
+        this.roleService.deleteRole(role.id)
+            .then(() => {
+                this.roleList= this.roleList.filter(r => r !== role);
+                if (this.selectedRole === role) {
+                    this.selectedRole = null;
+                }
+            });
+    }
 }

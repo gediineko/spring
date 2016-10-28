@@ -39,6 +39,13 @@ var RoleService = (function () {
             .then(function () { return role; })
             .catch(this.handleError);
     };
+    RoleService.prototype.deleteRole = function (id) {
+        var url = this.roleUrl + "/" + id;
+        return this.http.delete(url, { headers: this.headers })
+            .toPromise()
+            .then(function () { return null; })
+            .catch(this.handleError);
+    };
     RoleService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

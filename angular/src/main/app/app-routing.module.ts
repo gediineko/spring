@@ -37,7 +37,7 @@ const routes:  Routes = [
         component: PersonFormComponent
     },
     {
-        path: 'user/:id',
+        path: 'user/view/:id',
         component: PersonViewFormComponent
     },
     {

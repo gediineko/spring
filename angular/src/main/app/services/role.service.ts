@@ -38,4 +38,12 @@ export class RoleService {
             .then(() => role)
             .catch(this.handleError);
     }
+
+    deleteRole(id: number): Promise<void> {
+        const url = `${this.roleUrl}/${id}`;
+        return this.http.delete(url, {headers: this.headers})
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
+    }
 }

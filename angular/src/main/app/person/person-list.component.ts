@@ -27,11 +27,21 @@ export class PersonListComponent implements OnInit {
     }
 
     gotoView(): void {
-        this.router.navigate(['/user', this.selectedPerson.id]);
+        this.router.navigate(['/user/view', this.selectedPerson.id]);
     }
 
     onSelect(person: Person): void {
         this.selectedPerson = person;
+    }
+
+    delete(person: Person): void {
+        this.personService.deletePerson(person.id)
+            .then(() => {
+                this.personList = this.personList.filter(p => p !== person);
+                if (this.selectedPerson === person) {
+                    this.selectedPerson = null;
+                }
+            });
     }
 
 }
