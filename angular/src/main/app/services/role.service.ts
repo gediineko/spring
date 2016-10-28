@@ -25,4 +25,17 @@ export class RoleService {
             .catch(this.handleError);
     }
 
+    getRole(id: number): Promise<Role> {
+        return this.getRoleList()
+            .then(role => role.find(role=> role.id === id));
+    }
+
+    update(role: Role): Promise<Role> {
+        const url = `${this.roleUrl}/${role.id}`;
+        return this.http
+            .put(url, JSON.stringify(role), {headers: this.headers})
+            .toPromise()
+            .then(() => role)
+            .catch(this.handleError);
+    }
 }

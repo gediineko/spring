@@ -27,6 +27,18 @@ var RoleService = (function () {
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
+    RoleService.prototype.getRole = function (id) {
+        return this.getRoleList()
+            .then(function (role) { return role.find(function (role) { return role.id === id; }); });
+    };
+    RoleService.prototype.update = function (role) {
+        var url = this.roleUrl + "/" + role.id;
+        return this.http
+            .put(url, JSON.stringify(role), { headers: this.headers })
+            .toPromise()
+            .then(function () { return role; })
+            .catch(this.handleError);
+    };
     RoleService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

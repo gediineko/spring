@@ -31,9 +31,12 @@ var PersonService = (function () {
         return this.getPersonList()
             .then(function (person) { return person.find(function (person) { return person.id === id; }); });
     };
-    PersonService.prototype.createPerson = function (name) {
+    PersonService.prototype.getPersonCount = function () {
+        return Object.keys(this.personUrl).length;
+    };
+    PersonService.prototype.createPerson = function (newPerson) {
         return this.http
-            .post(this.personUrl, JSON.stringify({ name: name }), { headers: this.headers })
+            .post(this.personUrl, JSON.stringify({ newPerson: newPerson }), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json().data; })
             .catch(this.handleError);

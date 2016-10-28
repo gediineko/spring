@@ -12,7 +12,7 @@ import {PersonService} from "../services/person.service";
 
 export class PersonFormComponent implements OnInit {
 
-    person: Person;
+    newPerson: Person;
 
     constructor(
         private personService: PersonService,
@@ -25,10 +25,20 @@ export class PersonFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
     }
 
-    onSubmit(): void {
-
+    onSubmit(newPerson: Person): void {
+        this.newPerson.username = newPerson.username;
+        this.newPerson.titleName = newPerson.titleName;
+        this.newPerson.firstName = newPerson.firstName;
+        this.newPerson.middleName = newPerson.middleName;
+        this.newPerson.lastName = newPerson.lastName;
+        this.newPerson.street = newPerson.street;
+        this.newPerson.barangay = newPerson.barangay;
+        this.newPerson.city = newPerson.city;
+        this.newPerson.zipCode = newPerson.zipCode;
+        this.newPerson.gwa = newPerson.gwa;
+        this.newPerson.currentlyEmployed = newPerson.currentlyEmployed;
+        this.personService.createPerson(newPerson);
     }
 }

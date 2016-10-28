@@ -57,6 +57,15 @@ export class InMemoryDataService implements InMemoryDbService {
             }
         ];
 
+        let roletype = [
+            {
+                name: 'USER'
+            },
+            {
+                name: 'ADMIN'
+            }
+        ]
+
         let contact = [
             {
                 id: 1,
@@ -78,6 +87,6 @@ export class InMemoryDataService implements InMemoryDbService {
             }
         ];
 
-        return {person, role, contact};
+        return {person, role, roletype, contact};
     }
 }

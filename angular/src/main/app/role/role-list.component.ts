@@ -11,6 +11,7 @@ import {RoleService} from "../services/role.service";
 
 export class RoleListComponent implements OnInit {
     roleList: Role[];
+    selectedRole: Role;
 
     constructor(private roleService: RoleService,
                 private router: Router) {
@@ -25,5 +26,11 @@ export class RoleListComponent implements OnInit {
             .then(roleList => this.roleList = roleList);
     }
 
+    gotoView(): void {
+        this.router.navigate(['/role/form', this.selectedRole.id]);
+    }
 
+    onSelect(role: Role): void {
+        this.selectedRole = role;
+    }
 }

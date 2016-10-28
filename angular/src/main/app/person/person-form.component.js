@@ -23,7 +23,19 @@ var PersonFormComponent = (function () {
     };
     PersonFormComponent.prototype.ngOnInit = function () {
     };
-    PersonFormComponent.prototype.onSubmit = function () {
+    PersonFormComponent.prototype.onSubmit = function (newPerson) {
+        this.newPerson.username = newPerson.username;
+        this.newPerson.titleName = newPerson.titleName;
+        this.newPerson.firstName = newPerson.firstName;
+        this.newPerson.middleName = newPerson.middleName;
+        this.newPerson.lastName = newPerson.lastName;
+        this.newPerson.street = newPerson.street;
+        this.newPerson.barangay = newPerson.barangay;
+        this.newPerson.city = newPerson.city;
+        this.newPerson.zipCode = newPerson.zipCode;
+        this.newPerson.gwa = newPerson.gwa;
+        this.newPerson.currentlyEmployed = newPerson.currentlyEmployed;
+        this.personService.createPerson(newPerson);
     };
     PersonFormComponent = __decorate([
         core_1.Component({

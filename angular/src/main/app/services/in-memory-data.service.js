@@ -56,6 +56,14 @@ var InMemoryDataService = (function () {
                 roleName: 'Purr master'
             }
         ];
+        var roletype = [
+            {
+                name: 'USER'
+            },
+            {
+                name: 'ADMIN'
+            }
+        ];
         var contact = [
             {
                 id: 1,
@@ -76,7 +84,7 @@ var InMemoryDataService = (function () {
                 contactInfo: 'scwagtails.cadoodle.com'
             }
         ];
-        return { person: person, role: role, contact: contact };
+        return { person: person, role: role, roletype: roletype, contact: contact };
     };
     return InMemoryDataService;
 }());

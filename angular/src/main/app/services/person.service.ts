@@ -30,9 +30,13 @@ export class PersonService {
             .then(person => person.find(person => person.id === id));
     }
 
-    createPerson(name: string): Promise<Person> {
+    getPersonCount(): number {
+        return Object.keys(this.personUrl).length;
+    }
+
+    createPerson(newPerson: Person): Promise<Person> {
         return this.http
-            .post(this.personUrl, JSON.stringify({name: name}), {headers: this.headers})
+            .post(this.personUrl, JSON.stringify({newPerson: newPerson}), {headers: this.headers})
             .toPromise()
             .then(res => res.json().data)
             .catch(this.handleError);

@@ -24,15 +24,10 @@
                     <td>{{role.id}}</td>
                     <td>{{role.roleName}}</td>
                     <td>
-                        <a href="#">
+                        <button class="btn btn-default" [class.selected]="role === selectedRole"
+                                (click)="onSelect(role); gotoView()">
                             <i class="fa fa-eye"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fa fa-pencil-square-o"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fa fa-times"></i>
-                        </a>
+                        </button>
                     </td>
                 </tr>
             </tbody>

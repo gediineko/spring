@@ -3,13 +3,13 @@
         Add Person
     </h1>
 
-    <form #f="ngForm" class="form">
+    <form #f="ngForm" *ngIf="!newPerson" class="form">
         <div class="account-group">
             <h3>Account</h3>
             <div class="row">
                 <div class="col-md-4 form-group">
                     <label for="username" class="req">Username</label>
-                    <input type="text" id="username" class="form-control"
+                    <input (ngModel)="newPerson.username" type="text" id="username" class="form-control"
                            name="username" placeholder="Username" required ngControl="username"/>
                 </div>
                 <!--<div class="col-md-4 form-group">
@@ -31,27 +31,27 @@
             <div class="row">
                 <div class="col-md-1 input-grp">
                     <label for="title">Title</label>
-                    <input type="text" id="title" class="form-control"
+                    <input (ngModel)="newPerson.titleName" type="text" id="title" class="form-control"
                            name="title" placeholder="Title" ngControl="title"/>
                 </div>
                 <div class="col-md-4 input-grp">
                     <label for="firstName" class="req">First Name</label>
-                    <input type="text" id="firstName" class="form-control"
+                    <input (ngModel)="newPerson.firstName" type="text" id="firstName" class="form-control"
                            name="firstName" placeholder="First Name" ngControl="firstName" required/>
                 </div>
                 <div class="col-md-3 input-grp">
                     <label for="middleName">Middle Name</label>
-                    <input type="text" id="middleName" class="form-control"
+                    <input (ngModel)="newPerson.middleName" type="text" id="middleName" class="form-control"
                            name="middleName" placeholder="Middle Name" ngControl="middleName"/>
                 </div>
                 <div class="col-md-3 input-grp">
                     <label for="lastName" class="req">Last Name</label>
-                    <input type="text" id="lastName" class="form-control"
+                    <input (ngModel)="newPerson.lastName" type="text" id="lastName" class="form-control"
                            name="lastName" placeholder="Last Name" ngControl="lastName" required/>
                 </div>
                 <div class="col-md-1 input-grp">
                     <label for="suffix">Suffix</label>
-                    <input type="text" id="suffix" class="form-control" name="suffix"
+                    <input (ngModel)="newPerson.suffix" type="text" id="suffix" class="form-control" name="suffix"
                            placeholder="Suffix" ngControl="suffix"/>
                 </div>
             </div>
@@ -70,22 +70,22 @@
             <div class="row">
                 <div class="col-md-4 input-grp">
                     <label for="street">Street</label>
-                    <input type="text" id="street" class="form-control" name="street"
+                    <input (ngModel)="newPerson.street" type="text" id="street" class="form-control" name="street"
                            placeholder="Street" ngControl="street">
                 </div>
                 <div class="col-md-3 input-grp">
                     <label for="barangay">Barangay</label>
-                    <input type="text" id="barangay" class="form-control" name="barangay"
+                    <input (ngModel)="newPerson.barangay" type="text" id="barangay" class="form-control" name="barangay"
                            placeholder="Barangay" ngControl="barangay">
                 </div>
                 <div class="col-md-3 input-grp">
                     <label for="city" class="req">City</label>
-                    <input type="text" id="city" class="form-control" name="city"
+                    <input (ngModel)="newPerson.city" type="text" id="city" class="form-control" name="city"
                            placeholder="City" ngControl="city" required>
                 </div>
                 <div class="col-md-2 input-grp">
                     <label for="zipCode">Zip Code</label>
-                    <input type="text" id="zipCode" class="form-control" name="zipCode"
+                    <input (ngModel)="newPerson.zipCode" type="text" id="zipCode" class="form-control" name="zipCode"
                            placeholder="Zip Code" ngControl="zipCode">
                 </div>
             </div>
@@ -96,7 +96,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <label for="gwa">GWA</label>
-                    <input type="number" id="gwa" class="form-control" name="gwa"
+                    <input (ngModel)="newPerson.gwa" type="number" id="gwa" class="form-control" name="gwa"
                            placeholder="GWA" ngControl="gwa">
                 </div>
             </div>
@@ -104,12 +104,16 @@
             <div class="row rdbtnPanel">
                 <div class="col-md-2">
                     <label class="radio-inline">
-                        <input type="radio" name="optEmployed"> Yes
+                        <input type="radio" name="optEmployed"
+                               (ngModel)="newPerson.currentlyEmployed"
+                               [value]="true"> Yes
                     </label>
                 </div>
                 <div class="col-md-2">
                     <label class="radio-inline">
-                        <input type="radio" name="optEmployed"> No
+                        <input type="radio" name="optEmployed"
+                               (ngModel)="newPerson.username"
+                               [value]="false"> No
                     </label>
                 </div>
             </div>
@@ -121,7 +125,7 @@
             </div>-->
         </div>
         <div class="submit-btn">
-            <button type="submit" class="btn btn-primary" (click)="onSubmit(person)">
+            <button type="submit" class="btn btn-primary" (click)="onSubmit(newPerson); goBack()">
                 <i class="fa fa-paper-plane"></i> Submit
             </button>
         </div>

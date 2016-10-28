@@ -49,7 +49,7 @@ const routes:  Routes = [
         component: RoleListComponent
     },
     {
-        path: 'role/form',
+        path: 'role/form/:id',
         component: RoleFormComponent
     }
 

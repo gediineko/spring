@@ -58,7 +58,7 @@ var routes = [
         component: role_list_component_1.RoleListComponent
     },
     {
-        path: 'role/form',
+        path: 'role/form/:id',
         component: role_form_component_1.RoleFormComponent
     }
 ];

@@ -1,17 +1,17 @@
 <section class="role-form">
     <h1 class="page-title">Role Form</h1>
-    <form action="post" class="form">
+    <form action="post" class="form" *ngIf="role">
         <div class="role-form-input">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <label for="roleType">Role Type</label>
-                    <input type="text" id="roleType" name="roleType" class="form-control" placeholder="Role Type">
+                    <input [(ngModel)]="role.roleType" type="text" id="roleType" name="roleType" class="form-control" placeholder="Role Type">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <label for="roleName">Role Name</label>
-                    <input type="text" id="roleName" name="roleName" class="form-control" placeholder="Role Name">
+                    <input [(ngModel)]="role.roleName" type="text" id="roleName" name="roleName" class="form-control" placeholder="Role Name">
                 </div>
             </div>
             <div class="row">

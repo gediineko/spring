@@ -24,6 +24,12 @@ var RoleListComponent = (function () {
         this.roleService.getRoleList()
             .then(function (roleList) { return _this.roleList = roleList; });
     };
+    RoleListComponent.prototype.gotoView = function () {
+        this.router.navigate(['/role/form', this.selectedRole.id]);
+    };
+    RoleListComponent.prototype.onSelect = function (role) {
+        this.selectedRole = role;
+    };
     RoleListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
