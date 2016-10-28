@@ -1,29 +1,49 @@
-<section class="admin-form">
+<section class="role-form">
     <h1 class="page-title">Admin Form</h1>
-    <form action="post" class="form">
-        <div class="row admin-form-input">
-            <div class="col-md-6 col-md-offset-3">
-                <label for="username">Username</label>
-                <input type="text" id="username" class="form-control" name="username" placeholder="Username">
+    <form action="post" class="form" *ngIf="role">
+        <div class="role-form-input">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <label for="roleType">Role Type</label>
+                    <input [(ngModel)]="role.roleType" type="text" id="roleType" name="roleType" class="form-control" placeholder="Role Type">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <label for="roleName">Role Name</label>
+                    <input [(ngModel)]="role.roleName" type="text" id="roleName" name="roleName" class="form-control" placeholder="Role Name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <button type="submit" class="btn btn-primary submit-btn" (click)="save()">
+                        <i class="fa fa-paper-plane"></i> Update
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" name="password" placeholder="Password">
+    </form>
+
+    <form action="post" class="form" *ngIf="!role">
+        <div class="role-form-input">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <label for="roleType">Role Type</label>
+                    <input type="text" id="type" name="roleType" class="form-control" placeholder="Role Type">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <label for="initialRole">Initial Role</label>
-                <input type="text" id="initialRole" class="form-control" name="initialRole" placeholder="Initial Role">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <label for="roleName">Admin Name</label>
+                    <input type="text" id="name" name="roleName" class="form-control" placeholder="Admin Name">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <button type="submit" class="btn btn-primary submit-btn">
-                    <i class="fa fa-paper-plane"></i> Submit
-                </button>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <button type="submit" class="btn btn-primary submit-btn" (click)="save()">
+                        <i class="fa fa-paper-plane"></i> Submit
+                    </button>
+                </div>
             </div>
         </div>
     </form>

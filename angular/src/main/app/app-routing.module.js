@@ -20,6 +20,7 @@ var role_list_component_1 = require("./role/role-list.component");
 var role_form_component_1 = require("./role/role-form.component");
 var person_view_form_component_1 = require("./person/person-view-form.component");
 var person_update_form_component_1 = require("./person/person-update-form.component");
+var role_add_form_component_1 = require("./role/role-add-form.component");
 var routes = [
     {
         path: '',
@@ -35,6 +36,10 @@ var routes = [
     },
     {
         path: 'admin/form',
+        component: admin_form_component_1.AdminFormComponent
+    },
+    {
+        path: 'admin/form/:id',
         component: admin_form_component_1.AdminFormComponent
     },
     {
@@ -60,6 +65,10 @@ var routes = [
     {
         path: 'role/form/:id',
         component: role_form_component_1.RoleFormComponent
+    },
+    {
+        path: 'role/form',
+        component: role_add_form_component_1.RoleAddFormComponent
     }
 ];
 var AppRoutingModule = (function () {

@@ -20,6 +20,7 @@ import {InMemoryDataService} from "./services/in-memory-data.service";
 import {PersonRoleListComponent} from "./role/person-role-list.component";
 import {PersonViewFormComponent} from "./person/person-view-form.component";
 import {PersonUpdateFormComponent} from "./person/person-update-form.component";
+import {RoleAddFormComponent} from "./role/role-add-form.component";
 
 @NgModule({
     imports: [
@@ -43,7 +44,8 @@ import {PersonUpdateFormComponent} from "./person/person-update-form.component";
         PersonViewFormComponent,
         PersonUpdateFormComponent,
         RoleFormComponent,
-        RoleListComponent
+        RoleListComponent,
+        RoleAddFormComponent
     ],
     providers: [
         PersonService,

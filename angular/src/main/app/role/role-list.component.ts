@@ -23,7 +23,7 @@ export class RoleListComponent implements OnInit {
 
     getRoleList(): void {
         this.roleService.getRoleList()
-            .then(roleList => this.roleList = roleList);
+            .then(roleList => this.roleList = roleList.filter(r => r.roleType === 'USER'));
     }
 
     gotoView(): void {

@@ -22,7 +22,7 @@ var RoleListComponent = (function () {
     RoleListComponent.prototype.getRoleList = function () {
         var _this = this;
         this.roleService.getRoleList()
-            .then(function (roleList) { return _this.roleList = roleList; });
+            .then(function (roleList) { return _this.roleList = roleList.filter(function (r) { return r.roleType === 'USER'; }); });
     };
     RoleListComponent.prototype.gotoView = function () {
         this.router.navigate(['/role/form', this.selectedRole.id]);
