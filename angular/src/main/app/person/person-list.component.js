@@ -24,6 +24,12 @@ var PersonListComponent = (function () {
         this.personService.getPersonList()
             .then(function (personList) { return _this.personList = personList; });
     };
+    PersonListComponent.prototype.gotoView = function () {
+        this.router.navigate(['/user', this.selectedPerson.id]);
+    };
+    PersonListComponent.prototype.onSelect = function (person) {
+        this.selectedPerson = person;
+    };
     PersonListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

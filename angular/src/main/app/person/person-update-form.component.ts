@@ -1,16 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
-import {Location} from "@angular/common";
+import {Component, Input, OnInit} from "@angular/core";
+import {Router, ActivatedRoute, Params} from "@angular/router";
 import {Person} from "../mock-data-source/person";
 import {PersonService} from "../services/person.service";
 
 @Component({
     moduleId: module.id,
-    selector: 'person-form',
-    templateUrl: 'person-form.component.html'
+    selector: 'person-update-form',
+    templateUrl: 'person-update-form.component.html'
 })
 
-export class PersonFormComponent implements OnInit {
+export class PersonUpdateFormComponent implements OnInit {
 
     @Input()
     person: Person;
@@ -21,13 +20,8 @@ export class PersonFormComponent implements OnInit {
 
     constructor(
         private personService: PersonService,
-        private route: ActivatedRoute,
-        private location: Location
+        private route: ActivatedRoute
     ) { }
-
-    goBack(): void {
-        this.location.back();
-    }
 
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
@@ -35,9 +29,5 @@ export class PersonFormComponent implements OnInit {
             this.personService.getPerson(id)
                 .then(person => this.person = person);
         });
-    }
-
-    onSubmit(): void {
-
     }
 }

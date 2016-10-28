@@ -24,4 +24,5 @@ export class RoleService {
             .then(response => response.json().data as Role[])
             .catch(this.handleError);
     }
+
 }

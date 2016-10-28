@@ -69,6 +69,11 @@ Typography
     text-align: center;
 }
 
+.req::after {
+    content: ' *';
+    color: red;
+}
+
 /*
 ===============================================
 Buttons
@@ -76,6 +81,10 @@ Buttons
 */
 
 .submit-btn {
+    float: right;
+}
+
+.addBtn {
     float: right;
 }
 

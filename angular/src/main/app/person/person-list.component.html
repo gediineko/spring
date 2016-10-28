@@ -38,7 +38,7 @@
                 <th>GWA</th>
                 <th>Employment Status</th>
                 <th>Date Hired</th>
-                <th>Actions</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -48,24 +48,19 @@
             <tr *ngFor="let person of personList">
                 <td>{{person.id}}</td>
                 <td>{{person.username}}</td>
-                <td>{{person.titleName}} {{person.firstName}} {{person.middleName}} {{person.lastName}}
+                <td>{{person.titleName}} {{person.firstName}} {{person.middleName}} {{person.lastName}},
                     {{person.suffix}}
                 </td>
-                <td>{{person.street}} {{person.barangay}} {{person.city}} {{person.zipCode}}</td>
+                <td>{{person.street}}, {{person.barangay}}, {{person.city}}, {{person.zipCode}}</td>
                 <td>{{person.birthdate}}</td>
                 <td>{{person.gwa}}</td>
                 <td>{{person.currentlyEmployed}}</td>
                 <td>{{person.dateHired}}</td>
                 <td>
-                    <a href="#">
+                    <button class="btn btn-default" [class.selected]="person === selectedPerson"
+                            (click)="onSelect(person); gotoView()">
                         <i class="fa fa-eye"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fa fa-pencil-square-o"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fa fa-times"></i>
-                    </a>
+                    </button>
                 </td>
             </tr>
             </tbody>

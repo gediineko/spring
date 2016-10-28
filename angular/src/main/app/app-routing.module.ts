@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-import { AdminDashboardComponent } from "./admin/admin-dashboard.component";
-import { AdminFormComponent } from "./admin/admin-form.component";
-import { AdminListComponent } from "./admin/admin-list.component";
-import { LoginComponent } from './login/login.component';
-import { PersonListComponent } from './person/person-list.component';
-import { PersonFormComponent } from "./person/person-form.component";
-import { RoleListComponent } from './role/role-list.component';
-import { RoleFormComponent } from "./role/role-form.component";
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {AdminDashboardComponent} from "./admin/admin-dashboard.component";
+import {AdminFormComponent} from "./admin/admin-form.component";
+import {AdminListComponent} from "./admin/admin-list.component";
+import {LoginComponent} from "./login/login.component";
+import {PersonListComponent} from "./person/person-list.component";
+import {PersonFormComponent} from "./person/person-form.component";
+import {RoleListComponent} from "./role/role-list.component";
+import {RoleFormComponent} from "./role/role-form.component";
+import {PersonViewFormComponent} from "./person/person-view-form.component";
+import {PersonUpdateFormComponent} from "./person/person-update-form.component";
 
 const routes:  Routes = [
     {
@@ -34,6 +35,14 @@ const routes:  Routes = [
     {
         path: 'user/form',
         component: PersonFormComponent
+    },
+    {
+        path: 'user/:id',
+        component: PersonViewFormComponent
+    },
+    {
+        path: 'user/:id',
+        component: PersonUpdateFormComponent
     },
     {
         path: 'role',

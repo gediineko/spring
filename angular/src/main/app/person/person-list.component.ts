@@ -11,6 +11,7 @@ import {PersonService} from "../services/person.service";
 
 export class PersonListComponent implements OnInit {
     personList: Person[];
+    selectedPerson: Person;
 
     constructor(private personService: PersonService,
                 private router: Router) {
@@ -25,5 +26,12 @@ export class PersonListComponent implements OnInit {
             .then(personList => this.personList = personList);
     }
 
+    gotoView(): void {
+        this.router.navigate(['/user', this.selectedPerson.id]);
+    }
+
+    onSelect(person: Person): void {
+        this.selectedPerson = person;
+    }
 
 }

@@ -8,21 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
-var person_1 = require("../mock-data-source/person");
 var person_service_1 = require("../services/person.service");
-var PersonFormComponent = (function () {
-    function PersonFormComponent(personService, route, location) {
-        this.personService = personService;
+var PersonViewFormComponent = (function () {
+    function PersonViewFormComponent(route, personService, location) {
         this.route = route;
+        this.personService = personService;
         this.location = location;
     }
-    PersonFormComponent.prototype.goBack = function () {
-        this.location.back();
-    };
-    PersonFormComponent.prototype.ngOnInit = function () {
+    PersonViewFormComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.forEach(function (params) {
             var id = +params['id'];
@@ -30,21 +26,23 @@ var PersonFormComponent = (function () {
                 .then(function (person) { return _this.person = person; });
         });
     };
-    PersonFormComponent.prototype.onSubmit = function () {
+    PersonViewFormComponent.prototype.goBack = function () {
+        this.location.back();
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', person_1.Person)
-    ], PersonFormComponent.prototype, "person", void 0);
-    PersonFormComponent = __decorate([
+    PersonViewFormComponent.prototype.save = function () {
+        var _this = this;
+        this.personService.update(this.person)
+            .then(function () { return _this.goBack(); });
+    };
+    PersonViewFormComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'person-form',
-            templateUrl: 'person-form.component.html'
+            selector: 'person-view-form',
+            templateUrl: 'person-view-form.component.html'
         }), 
-        __metadata('design:paramtypes', [person_service_1.PersonService, router_1.ActivatedRoute, common_1.Location])
-    ], PersonFormComponent);
-    return PersonFormComponent;
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, person_service_1.PersonService, common_1.Location])
+    ], PersonViewFormComponent);
+    return PersonViewFormComponent;
 }());
-exports.PersonFormComponent = PersonFormComponent;
-//# sourceMappingURL=person-form.component.js.map
+exports.PersonViewFormComponent = PersonViewFormComponent;
+//# sourceMappingURL=person-view-form.component.js.map

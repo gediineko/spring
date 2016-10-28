@@ -24,4 +24,6 @@ export class RoleListComponent implements OnInit {
         this.roleService.getRoleList()
             .then(roleList => this.roleList = roleList);
     }
+
+
 }

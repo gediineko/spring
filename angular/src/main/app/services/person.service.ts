@@ -11,7 +11,7 @@ export class PersonService {
     private headers = new Headers({'Content-Type': 'application/json'});
 
     private handleError(error: any): Promise<any> {
-        console.error('An error occured!', error);
+        console.error('An error occurred!', error);
         return Promise.reject(error.message || error);
     }
 
@@ -28,5 +28,30 @@ export class PersonService {
     getPerson(id: number): Promise<Person> {
         return this.getPersonList()
             .then(person => person.find(person => person.id === id));
+    }
+
+    createPerson(name: string): Promise<Person> {
+        return this.http
+            .post(this.personUrl, JSON.stringify({name: name}), {headers: this.headers})
+            .toPromise()
+            .then(res => res.json().data)
+            .catch(this.handleError);
+    }
+
+    deletePerson(id: number): Promise<void> {
+        const url = `${this.personUrl}/${id}`;
+        return this.http.delete(url, {headers: this.headers})
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
+    }
+
+    update(person: Person): Promise<Person> {
+        const url = `${this.personUrl}/${person.id}`;
+        return this.http
+            .put(url, JSON.stringify(person), {headers: this.headers})
+            .toPromise()
+            .then(() => person)
+            .catch(this.handleError);
     }
 }

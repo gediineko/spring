@@ -1,8 +1,9 @@
-import {InMemoryDbService} from 'angular-in-memory-web-api';
-
-export class InMemoryDataService implements InMemoryDbService {
-    createDb() {
-        let person = [
+"use strict";
+var InMemoryDataService = (function () {
+    function InMemoryDataService() {
+    }
+    InMemoryDataService.prototype.createDb = function () {
+        var person = [
             {
                 id: 1,
                 username: 'kpmittens',
@@ -38,8 +39,7 @@ export class InMemoryDataService implements InMemoryDbService {
                 dateHired: '08/26/2016'
             }
         ];
-
-        let role = [
+        var role = [
             {
                 id: 1,
                 roleType: 'ADMIN',
@@ -56,8 +56,7 @@ export class InMemoryDataService implements InMemoryDbService {
                 roleName: 'Purr master'
             }
         ];
-
-        let contact = [
+        var contact = [
             {
                 id: 1,
                 personId: 1,
@@ -77,7 +76,9 @@ export class InMemoryDataService implements InMemoryDbService {
                 contactInfo: 'scwagtails.cadoodle.com'
             }
         ];
-
-        return {person, role, contact};
-    }
-}
+        return { person: person, role: role, contact: contact };
+    };
+    return InMemoryDataService;
+}());
+exports.InMemoryDataService = InMemoryDataService;
+//# sourceMappingURL=in-memory-data.service.js.map

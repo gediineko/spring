@@ -17,6 +17,7 @@ var admin_dashboard_component_1 = require("./admin/admin-dashboard.component");
 var admin_form_component_1 = require("./admin/admin-form.component");
 var admin_list_component_1 = require("./admin/admin-list.component");
 var app_component_1 = require("./app.component");
+var contact_component_1 = require("./contact/contact.component");
 var login_component_1 = require("./login/login.component");
 var person_list_component_1 = require("./person/person-list.component");
 var role_list_component_1 = require("./role/role-list.component");
@@ -26,6 +27,9 @@ var person_service_1 = require("./services/person.service");
 var role_service_1 = require("./services/role.service");
 var angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
 var in_memory_data_service_1 = require("./services/in-memory-data.service");
+var person_role_list_component_1 = require("./role/person-role-list.component");
+var person_view_form_component_1 = require("./person/person-view-form.component");
+var person_update_form_component_1 = require("./person/person-update-form.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -36,7 +40,8 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
-                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService)
+                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
+                forms_1.ReactiveFormsModule
             ],
             declarations: [
                 app_component_1.AppComponent,
@@ -44,8 +49,12 @@ var AppModule = (function () {
                 admin_dashboard_component_1.AdminDashboardComponent,
                 admin_form_component_1.AdminFormComponent,
                 admin_list_component_1.AdminListComponent,
-                person_list_component_1.PersonListComponent,
+                contact_component_1.ContactComponent,
+                person_role_list_component_1.PersonRoleListComponent,
                 person_form_component_1.PersonFormComponent,
+                person_list_component_1.PersonListComponent,
+                person_view_form_component_1.PersonViewFormComponent,
+                person_update_form_component_1.PersonUpdateFormComponent,
                 role_form_component_1.RoleFormComponent,
                 role_list_component_1.RoleListComponent
             ],
