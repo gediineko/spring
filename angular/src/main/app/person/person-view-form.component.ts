@@ -3,7 +3,6 @@ import {Params, ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
 import {PersonService} from "../services/person.service";
 import {Person} from "../mock-data-source/person";
-import {Input} from "@angular/core/src/metadata/directives";
 
 @Component({
     moduleId: module.id,

@@ -12,12 +12,7 @@ import {PersonService} from "../services/person.service";
 
 export class PersonFormComponent implements OnInit {
 
-    @Input()
     person: Person;
-
-    private isAdd: boolean;
-    private isView: boolean;
-    private isUpdate: boolean;
 
     constructor(
         private personService: PersonService,
@@ -30,11 +25,7 @@ export class PersonFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.route.params.forEach((params: Params) => {
-            let id = +params['id'];
-            this.personService.getPerson(id)
-                .then(person => this.person = person);
-        });
+
     }
 
     onSubmit(): void {

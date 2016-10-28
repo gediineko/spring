@@ -35,8 +35,7 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>GWA</th>
-                <th>Status</th>
-                <th>Date Hired</th>
+                <th>Employment Status</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -52,8 +51,9 @@
                 </td>
                 <td>{{person.street}}, {{person.barangay}}, {{person.city}}, {{person.zipCode}}</td>
                 <td>{{person.gwa}}</td>
-                <td>{{person.currentlyEmployed}}</td>
-                <td>{{person.dateHired}}</td>
+                <td *ngIf="person.currentlyEmployed === true">Employed</td>
+                <td *ngIf="person.currentlyEmployed === false">Unemployed</td>
+                <!--<td>{{person.currentlyEmployed}}</td>-->
                 <td>
                     <button class="btn btn-default" [class.selected]="person === selectedPerson"
                             (click)="onSelect(person); gotoView()">

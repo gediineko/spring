@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
-var person_1 = require("../mock-data-source/person");
 var person_service_1 = require("../services/person.service");
 var PersonFormComponent = (function () {
     function PersonFormComponent(personService, route, location) {
@@ -23,19 +22,9 @@ var PersonFormComponent = (function () {
         this.location.back();
     };
     PersonFormComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.route.params.forEach(function (params) {
-            var id = +params['id'];
-            _this.personService.getPerson(id)
-                .then(function (person) { return _this.person = person; });
-        });
     };
     PersonFormComponent.prototype.onSubmit = function () {
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', person_1.Person)
-    ], PersonFormComponent.prototype, "person", void 0);
     PersonFormComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
