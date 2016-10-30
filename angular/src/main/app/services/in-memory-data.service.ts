@@ -11,14 +11,12 @@ export class InMemoryDataService implements InMemoryDbService {
                 middleName: 'Paws',
                 lastName: 'Mittens',
                 suffix: 'IV',
-                birthdate: '01/01/2000',
                 street: '2000 Furball St.',
                 barangay: 'Fishtail',
                 city: 'Yarn Ville',
                 zipCode: 11163,
                 gwa: 2,
                 currentlyEmployed: true,
-                dateHired: '10/24/2016'
             },
             {
                 id: 2,
@@ -28,14 +26,12 @@ export class InMemoryDataService implements InMemoryDbService {
                 middleName: '',
                 lastName: 'Wagtails',
                 suffix: 'III',
-                birthdate: '01/01/1996',
                 street: '2108 Catnip St.',
                 barangay: 'Fishtail',
                 city: 'Yarn Ville',
                 zipCode: 11164,
                 gwa: 5,
                 currentlyEmployed: true,
-                dateHired: '08/26/2016'
             }
         ];
 

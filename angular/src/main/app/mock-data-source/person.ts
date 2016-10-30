@@ -6,12 +6,10 @@ export class Person {
     middleName: string;
     lastName: string;
     suffix: string;
-    birthdate: Date;
     street: string;
     barangay: string;
     city: string;
     zipCode: number;
     gwa: number;
     currentlyEmployed: boolean;
-    dateHired: Date;
 }

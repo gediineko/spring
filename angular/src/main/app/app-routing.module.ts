@@ -11,6 +11,7 @@ import {RoleFormComponent} from "./role/role-form.component";
 import {PersonViewFormComponent} from "./person/person-view-form.component";
 import {PersonUpdateFormComponent} from "./person/person-update-form.component";
 import {RoleAddFormComponent} from "./role/role-add-form.component";
+import {PersonAddContactRoleComponent} from "./person/person-add-contactrole.component";
 
 const routes:  Routes = [
     {
@@ -60,6 +61,10 @@ const routes:  Routes = [
     {
         path: 'role/form',
         component: RoleAddFormComponent
+    },
+    {
+        path: 'user/contact-role/:id',
+        component: PersonAddContactRoleComponent
     }
 
 ];

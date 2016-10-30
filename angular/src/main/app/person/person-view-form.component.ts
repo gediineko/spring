@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Params, ActivatedRoute} from "@angular/router";
+import {Params, ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {PersonService} from "../services/person.service";
 import {Person} from "../mock-data-source/person";
@@ -16,6 +16,7 @@ export class PersonViewFormComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private personService: PersonService,
         private location: Location
     ) { }
@@ -35,5 +36,9 @@ export class PersonViewFormComponent implements OnInit {
     save(): void {
         this.personService.update(this.person)
             .then(() => this.goBack());
+    }
+
+    gotoContactRoleView(): void {
+        this.router.navigate(['/user/contact-role', this.person.id]);
     }
 }

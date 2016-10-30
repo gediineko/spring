@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css?family=Arvo|Cinzel');
 
 /* components */
-@import url('components/login.component.css');
+@import './components/login.component.css';
 @import url('components/admin-dashboard.component.css');
 @import url('components/admin-form.component.css');
 @import url('components/admin-list.component.css');

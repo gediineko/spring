@@ -31,6 +31,8 @@ var person_role_list_component_1 = require("./role/person-role-list.component");
 var person_view_form_component_1 = require("./person/person-view-form.component");
 var person_update_form_component_1 = require("./person/person-update-form.component");
 var role_add_form_component_1 = require("./role/role-add-form.component");
+var person_add_contactrole_component_1 = require("./person/person-add-contactrole.component");
+var contact_service_1 = require("./services/contact.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -56,13 +58,15 @@ var AppModule = (function () {
                 person_list_component_1.PersonListComponent,
                 person_view_form_component_1.PersonViewFormComponent,
                 person_update_form_component_1.PersonUpdateFormComponent,
+                person_add_contactrole_component_1.PersonAddContactRoleComponent,
                 role_form_component_1.RoleFormComponent,
                 role_list_component_1.RoleListComponent,
                 role_add_form_component_1.RoleAddFormComponent
             ],
             providers: [
                 person_service_1.PersonService,
-                role_service_1.RoleService
+                role_service_1.RoleService,
+                contact_service_1.ContactService
             ],
             bootstrap: [
                 app_component_1.AppComponent

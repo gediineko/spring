@@ -11,11 +11,21 @@
         <tr>
             <th>Contact</th>
             <th>Contact Type</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td class="empty-list" colspan="2">No Contacts</td>
+        <tr *ngIf="!contactList">
+            <td class="empty-list" colspan="3">No Contacts</td>
+        </tr>
+        <tr *ngFor="let contact of contactList">
+            <td>{{contact.contactInfo}}</td>
+            <td>{{contact.contactType}}</td>
+            <td>
+                <button class="btn btn-default">
+                    <i class="fa fa-trash-o"></i>
+                </button>
+            </td>
         </tr>
         </tbody>
     </table>

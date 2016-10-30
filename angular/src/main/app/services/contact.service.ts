@@ -7,7 +7,7 @@ import {Contact} from "../mock-data-source/contact";
 
 @Injectable()
 export class ContactService {
-    private contacrUrl = 'app/contact.json';
+    private contactUrl = 'app/contact.json';
     private headers = new Headers({'Content-Type': 'application/json'});
 
     private handleError(error: any): Promise<any> {
@@ -16,5 +16,18 @@ export class ContactService {
     }
 
     constructor(private http: Http) {
+
+    }
+
+    getContactList(): Promise<Contact[]> {
+        return this.http.get(this.contactUrl)
+            .toPromise()
+            .then(response => response.json().data as Contact[])
+            .catch(this.handleError);
+    }
+
+    getPersonContact(personId: number): Promise<Contact> {
+        return this.getContactList()
+            .then(contact => contact.find(contact => contact.personId === personId));
     }
 }

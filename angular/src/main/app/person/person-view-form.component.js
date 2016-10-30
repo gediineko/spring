@@ -13,8 +13,9 @@ var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
 var person_service_1 = require("../services/person.service");
 var PersonViewFormComponent = (function () {
-    function PersonViewFormComponent(route, personService, location) {
+    function PersonViewFormComponent(route, router, personService, location) {
         this.route = route;
+        this.router = router;
         this.personService = personService;
         this.location = location;
     }
@@ -34,13 +35,16 @@ var PersonViewFormComponent = (function () {
         this.personService.update(this.person)
             .then(function () { return _this.goBack(); });
     };
+    PersonViewFormComponent.prototype.gotoContactRoleView = function () {
+        this.router.navigate(['/user/contact-role', this.person.id]);
+    };
     PersonViewFormComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'person-view-form',
             templateUrl: 'person-view-form.component.html'
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, person_service_1.PersonService, common_1.Location])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, person_service_1.PersonService, common_1.Location])
     ], PersonViewFormComponent);
     return PersonViewFormComponent;
 }());

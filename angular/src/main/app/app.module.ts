@@ -21,6 +21,8 @@ import {PersonRoleListComponent} from "./role/person-role-list.component";
 import {PersonViewFormComponent} from "./person/person-view-form.component";
 import {PersonUpdateFormComponent} from "./person/person-update-form.component";
 import {RoleAddFormComponent} from "./role/role-add-form.component";
+import {PersonAddContactRoleComponent} from "./person/person-add-contactrole.component";
+import {ContactService} from "./services/contact.service";
 
 @NgModule({
     imports: [
@@ -43,13 +45,15 @@ import {RoleAddFormComponent} from "./role/role-add-form.component";
         PersonListComponent,
         PersonViewFormComponent,
         PersonUpdateFormComponent,
+        PersonAddContactRoleComponent,
         RoleFormComponent,
         RoleListComponent,
         RoleAddFormComponent
     ],
     providers: [
         PersonService,
-        RoleService
+        RoleService,
+        ContactService
     ],
     bootstrap: [
         AppComponent

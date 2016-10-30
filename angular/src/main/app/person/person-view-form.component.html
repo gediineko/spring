@@ -4,8 +4,9 @@
     </h1>
 
     <nav class="page-title">
-        <a routerLink="/"></a>
-        View Contacts and Roles
+        <a (click)="gotoContactRoleView()">
+            View Contacts and Roles
+        </a>
     </nav>
 
     <form class="form" *ngIf="person">
@@ -127,16 +128,7 @@
                 </div>
             </div>-->
         </div>
-        <div class="contact-role-grp">
-            <div class="row">
-                <div class="col-md-6">
-                    <contact-info-list></contact-info-list>
-                </div>
-                <div class="col-md-6">
-                    <person-role-list></person-role-list>
-                </div>
-            </div>
-        </div>
+
         <div class="submit-btn">
             <button type="submit" class="btn btn-primary" (click)="save()">
                 <i class="fa fa-paper-plane"></i> Update

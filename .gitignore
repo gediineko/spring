@@ -3,4 +3,9 @@ target
 out
 *.iml
 node_modules/
-typings/
+typings
+angular/**/**.js
+angular/**/**.js.map
+!systemjs.config.js
+!angular/src/main/js/*.js
+*.log

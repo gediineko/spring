@@ -21,6 +21,7 @@ var role_form_component_1 = require("./role/role-form.component");
 var person_view_form_component_1 = require("./person/person-view-form.component");
 var person_update_form_component_1 = require("./person/person-update-form.component");
 var role_add_form_component_1 = require("./role/role-add-form.component");
+var person_add_contactrole_component_1 = require("./person/person-add-contactrole.component");
 var routes = [
     {
         path: '',
@@ -69,6 +70,10 @@ var routes = [
     {
         path: 'role/form',
         component: role_add_form_component_1.RoleAddFormComponent
+    },
+    {
+        path: 'user/contact-role/:id',
+        component: person_add_contactrole_component_1.PersonAddContactRoleComponent
     }
 ];
 var AppRoutingModule = (function () {
